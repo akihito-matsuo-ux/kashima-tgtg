@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>未来に残そう、勝利も食も。｜鹿島アントラーズ × Too Good To Go</title>
 <style>
   :root {
@@ -155,6 +156,37 @@
 </style>
 </head>
 <body>
+
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#004832 0%,#00573D 55%,#0B6B4C 100%);display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:#fff;border-radius:18px;padding:36px 30px;max-width:400px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.3)">
+    <div style="color:#C9A44C;font-weight:bold;font-style:italic;letter-spacing:.08em;font-size:13px;margin-bottom:8px">― WE BUILD A LEGACY ―</div>
+    <div style="font-size:20px;font-weight:bold;color:#00573D;margin-bottom:6px">メンバー限定ページ</div>
+    <p style="font-size:13px;color:#666;margin-bottom:18px">合言葉を入力してください</p>
+    <input id="gate-pw" type="text" autocomplete="off" style="width:100%;padding:12px 16px;border:2px solid #D8E6DE;border-radius:10px;font-size:16px;text-align:center;font-family:inherit" placeholder="合言葉">
+    <div id="gate-err" style="color:#9E1B32;font-size:12.5px;font-weight:bold;margin-top:8px;visibility:hidden">合言葉が違います</div>
+    <button id="gate-go" style="margin-top:12px;width:100%;background:#00573D;color:#fff;font-weight:bold;font-size:16px;padding:12px;border:none;border-radius:30px;cursor:pointer;font-family:inherit">入場する</button>
+  </div>
+</div>
+<script>
+(function(){
+  const KEY = "kashima_tgtg_gate", PASS = "kaxtgtg";
+  const gate = document.getElementById("gate");
+  if (localStorage.getItem(KEY) === "ok") { gate.remove(); return; }
+  document.documentElement.style.overflow = "hidden";
+  function tryEnter(){
+    const v = (document.getElementById("gate-pw").value || "").trim().toLowerCase();
+    if (v === PASS) {
+      localStorage.setItem(KEY, "ok");
+      gate.remove();
+      document.documentElement.style.overflow = "";
+    } else {
+      document.getElementById("gate-err").style.visibility = "visible";
+    }
+  }
+  document.getElementById("gate-go").onclick = tryEnter;
+  document.getElementById("gate-pw").addEventListener("keydown", e => { if (e.key === "Enter") tryEnter(); });
+})();
+</script>
 
 <nav>
   <div class="wrap">
