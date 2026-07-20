@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未来に残そう、勝利も食も。｜鹿島アントラーズ × Too Good To Go</title>
+<style>
+  :root {
+    --green: #00573D;
+    --green2: #2E8B57;
+    --green-bg: #EAF4EF;
+    --red: #9E1B32;
+    --red-bg: #F7EAEC;
+    --gold: #C9A44C;
+    --gold-dark: #8A6D2C;
+    --ink: #1A1A1A;
+    --gray: #666;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--ink); line-height: 1.8; background: #fff;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100; background: var(--green);
+    padding: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  nav .wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  nav .brand { color: #fff; font-weight: bold; font-size: 15px; margin-right: auto; }
+  nav a { color: #CFE3D8; text-decoration: none; font-size: 13px; }
+  nav a:hover { color: var(--gold); }
+
+  /* Hero */
+  header {
+    background: linear-gradient(160deg, #004832 0%, var(--green) 55%, #0B6B4C 100%);
+    color: #fff; padding: 90px 0 80px; text-align: left;
+  }
+  header .kicker { color: var(--gold); font-weight: bold; font-style: italic; letter-spacing: .1em; margin-bottom: 14px; }
+  header h1 { font-size: clamp(30px, 6vw, 56px); line-height: 1.3; margin-bottom: 18px; }
+  header .sub { font-size: clamp(15px, 2.2vw, 20px); color: #CFE3D8; font-weight: bold; }
+  header .team { margin-top: 34px; font-size: 13px; color: #9FC4B3; }
+
+  section { padding: 70px 0; }
+  section:nth-of-type(even) { background: #F7FAF8; }
+  .sec-label { color: var(--green2); font-weight: bold; font-size: 13px; letter-spacing: .08em; }
+  h2 { font-size: clamp(22px, 3.4vw, 32px); margin: 6px 0 30px; }
+  h2 .accent { color: var(--green); }
+
+  .grid { display: grid; gap: 18px; }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+  .card {
+    background: #fff; border-radius: 14px; padding: 24px;
+    box-shadow: 0 3px 14px rgba(0,0,0,.07);
+  }
+  .card.tint { background: var(--green-bg); box-shadow: none; }
+  .card h3 { font-size: 17px; color: var(--green); margin-bottom: 10px; }
+  .card.red h3 { color: var(--red); }
+  .card.gold h3 { color: var(--gold-dark); }
+  .card p { font-size: 14px; color: #333; }
+  .big { font-size: 34px; font-weight: bold; color: var(--green); line-height: 1.2; }
+  .big small { display: block; font-size: 12px; color: var(--gray); font-weight: normal; margin-top: 6px; }
+
+  .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%; background: var(--red);
+    color: #fff; font-weight: bold; margin-right: 10px; font-size: 15px; flex: none;
+  }
+  .issue { display: flex; align-items: flex-start; }
+  .issue div { flex: 1; }
+
+  .banner {
+    background: var(--green); color: #fff; border-radius: 14px;
+    padding: 22px 28px; font-weight: bold; font-size: 16px; margin-top: 26px;
+  }
+
+  /* Pillars */
+  .pillar-tag {
+    display: inline-block; font-size: 12px; font-weight: bold; color: #fff;
+    border-radius: 20px; padding: 3px 14px; margin-bottom: 12px;
+  }
+  .p1 .pillar-tag { background: var(--green); }
+  .p2 .pillar-tag { background: var(--red); }
+  .p3 .pillar-tag { background: var(--gold-dark); }
+
+  /* Stadium */
+  .stadium-img {
+    border: 2px dashed var(--green2); border-radius: 14px; background: var(--green-bg);
+    min-height: 260px; display: flex; align-items: center; justify-content: center;
+    color: var(--green2); font-weight: bold; text-align: center; padding: 20px;
+    margin-bottom: 26px;
+  }
+  .flow { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+  .flow .card { flex: 1; min-width: 200px; }
+  .flow .arrow { align-self: center; color: var(--gold); font-size: 26px; font-weight: bold; }
+
+  /* Timeline */
+  .timeline { position: relative; margin: 30px 0 10px; padding-left: 26px; border-left: 3px solid var(--gold); }
+  .tl-item { position: relative; padding: 0 0 26px 18px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -35px; top: 8px;
+    width: 15px; height: 15px; border-radius: 50%; background: var(--gold);
+  }
+  .tl-item .year { font-weight: bold; color: var(--gold-dark); font-size: 15px; }
+  .tl-item .what { font-weight: bold; font-size: 16px; }
+  .tl-item p { font-size: 13.5px; color: #444; }
+
+  /* Quiz CTA */
+  .quiz {
+    background: linear-gradient(135deg, var(--green) 0%, #0B6B4C 100%);
+    color: #fff; border-radius: 18px; padding: 44px 34px; text-align: center;
+  }
+  .quiz h2 { color: #fff; }
+  .quiz p { color: #CFE3D8; margin-bottom: 26px; }
+  .btn {
+    display: inline-block; background: var(--gold); color: #fff; font-weight: bold;
+    font-size: 17px; padding: 14px 46px; border-radius: 40px; text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+
+  footer { background: #00382A; color: #9FC4B3; padding: 34px 0; font-size: 11.5px; }
+  footer .close { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 14px; }
+
+  @media (max-width: 640px) {
+    section { padding: 48px 0; }
+    .flow .arrow { width: 100%; text-align: center; transform: rotate(90deg); }
+  }
+
+  /* Quiz engine */
+  .qz-box { background:#fff; border-radius:16px; padding:28px; max-width:680px; margin:0 auto; text-align:left; color:var(--ink); }
+  .qz-meta { display:flex; justify-content:space-between; font-size:13px; font-weight:bold; color:var(--green); margin-bottom:8px; }
+  .qz-timer { height:8px; background:#E2EEE8; border-radius:6px; overflow:hidden; margin-bottom:18px; }
+  .qz-timer div { height:100%; background:var(--gold); width:100%; transition:width 1s linear; }
+  .qz-q { font-size:17px; font-weight:bold; margin-bottom:18px; line-height:1.6; }
+  .qz-opt { display:block; width:100%; text-align:left; background:var(--green-bg); border:2px solid transparent;
+    border-radius:10px; padding:12px 16px; margin-bottom:10px; font-size:15px; cursor:pointer;
+    font-family:inherit; transition:background .12s; }
+  .qz-opt:hover:not(:disabled) { background:#D8EAE0; }
+  .qz-opt:disabled { cursor:default; }
+  .qz-opt.correct { background:#DFF3E6; border-color:#2E8B57; font-weight:bold; }
+  .qz-opt.wrong { background:#F9E3E7; border-color:var(--red); }
+  .qz-exp { background:#FDF8EC; border-left:4px solid var(--gold); border-radius:0 10px 10px 0;
+    padding:12px 16px; font-size:14px; margin:14px 0; display:none; }
+  .qz-next { display:none; margin-top:6px; }
+  .qz-result { text-align:center; padding:10px 0; }
+  .qz-score { font-size:52px; font-weight:bold; color:var(--green); line-height:1.2; }
+  .qz-rank { font-size:18px; font-weight:bold; color:var(--gold-dark); margin:10px 0 20px; }
+  .qz-hide { display:none !important; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">鹿島 × Too Good To Go</span>
+    <a href="#about">TGTGとは</a>
+    <a href="#why">なぜ鹿島</a>
+    <a href="#pillars">3本柱</a>
+    <a href="#stadium">2033スタジアム</a>
+    <a href="#roadmap">ロードマップ</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#apps">公式アプリ</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">― WE BUILD A LEGACY ―</div>
+    <h1>未来に残そう、<br>勝利も食も。</h1>
+    <div class="sub">鹿島アントラーズ × Too Good To Go 共創パートナーシップ構想（2027/28〜）</div>
+    <div class="team">ぴあスポーツビジネスプログラム第6期｜パートナーシップセールス実践｜2班</div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">ABOUT</div>
+    <h2>Too Good To Go とは ― <span class="accent">「捨てるには良すぎる」</span></h2>
+    <p style="max-width:820px; margin-bottom:30px;">2015年デンマーク生まれ、閉店前の余剰食品を約1/3価格の「サプライズバッグ」として販売する世界No.1のフードロス削減アプリ。店舗は廃棄コスト削減と新規客獲得、消費者は割安、環境負荷も減る「三方良し」の仕組みで、2026年1月にアジア初となる日本上陸を果たした。</p>
+    <div class="grid g3">
+      <div class="card tint"><div class="big">6億食超<small>累計救済食数（2025年単年1.57億食）</small></div></div>
+      <div class="card tint"><div class="big">CO2 42.4万t<small>削減量（2025年）・1食あたり2.7kg換算</small></div></div>
+      <div class="card tint"><div class="big">25万人<small>日本上陸1週間の登録者数＝全21カ国中の最速記録</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-label">WHY KASHIMA</div>
+    <h2>なぜ鹿島アントラーズなのか</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3 style="color:var(--red)">TGTGの3つの課題</h3>
+        <div class="issue"><span class="num">1</span><div><b>加盟店開拓の営業力不足</b><br><span style="font-size:13px;color:var(--gray)">営業組織をゼロから構築中。加盟店開拓が最大のボトルネック</span></div></div>
+        <div class="issue" style="margin-top:14px"><span class="num">2</span><div><b>首都圏外への足がかり不在</b><br><span style="font-size:13px;color:var(--gray)">展開は1都3県のみ。地方進出モデルが未確立</span></div></div>
+        <div class="issue" style="margin-top:14px"><span class="num">3</span><div><b>新興ブランドの信頼獲得コスト</b><br><span style="font-size:13px;color:var(--gray)">調査では88%が「知らない」</span></div></div>
+      </div>
+      <div class="card">
+        <h3>鹿島の答え ― 日本一相性の良い立地</h3>
+        <p>茨城は農業産出額<b>全国3位</b>・食品製造<b>全国7位</b>の「食の県」。県民の食品ロス削減意識の認知度は<b>98%</b>と全国トップクラス。その中心に立つ鹿島は、平均継続22年のパートナーネットワーク（75社＋ビジネスクラブ101社）、国内最多21冠のブランド、ホーム平均2.3万人のスタジアムという、3課題をまとめて解決するアセットを持つ。</p>
+      </div>
+    </div>
+    <div class="banner">スタジアムを「食ロス削減のショーケース」化し、温暖化防止という新しいシビックプライドを共創する。</div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="wrap">
+    <div class="sec-label">PROPOSAL</div>
+    <h2>共創アクティベーション 3本柱</h2>
+    <div class="grid g3">
+      <div class="card p1">
+        <span class="pillar-tag">柱1｜実証</span>
+        <h3>カシマ・サプライズバッグ</h3>
+        <p>試合終了後30分、人気スタグルの余剰をサプライズバッグとして販売。英ハイバーニアンFCの「Magic Bag」を参照した小規模実証から始め、「Jリーグ初」を確立。救済実績はSPL（環境の競技リーグ）スコアに直結する。</p>
+      </div>
+      <div class="card p2">
+        <span class="pillar-tag">柱2｜実利</span>
+        <h3>B2Bハブで加盟店開拓</h3>
+        <p>ビジネスクラブ例会・パートナー紹介で、鹿嶋・神栖などホームタウン5市の飲食店・スーパーを一斉オンボーディング。TGTG初の首都圏外進出を鹿島が実現する。</p>
+      </div>
+      <div class="card p3">
+        <span class="pillar-tag">柱3｜継続</span>
+        <h3>フードレスキューキャラバン</h3>
+        <p>小学生と鹿島アカデミー育成年代への食育・サステナ教育を毎年の恒例行事に。TGTGの「Look–Smell–Taste」消費者教育を日本の食育文脈へ移植し、次世代のシビックプライドを育てる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stadium">
+  <div class="wrap">
+    <div class="sec-label">MERCARI STADIUM 2033</div>
+    <h2>長期構想 ― 世界初の<span class="accent">完全資源循環スタジアム</span></h2>
+    <!-- 画像ができたら下のdivを <img src="mercari_stadium_2033.jpg" style="width:100%;border-radius:14px;margin-bottom:26px"> に差し替え -->
+    <div class="stadium-img">MERCARI STADIUM 2033 イメージ画像<br>（生成できたらここに差し替え）</div>
+    <div class="flow">
+      <div class="card tint"><h3>廃棄「前」</h3><p><b>TGTGレスキュー</b><br>余剰食品をサプライズバッグとして販売で救済</p></div>
+      <span class="arrow">→</span>
+      <div class="card tint"><h3 style="color:var(--red)">容器</h3><p><b>はがせるカップ</b><br>容器の水平リサイクル（2026年5月〜導入済）</p></div>
+      <span class="arrow">→</span>
+      <div class="card tint"><h3 style="color:var(--gold-dark)">廃棄「後」</h3><p><b>堆肥化</b><br>バイオコンポスターによる資源循環</p></div>
+    </div>
+    <div class="banner">試合がない365日も人が集う、サステナブルなまちの中心へ。実証（2027/28〜）の成果とデータが、新スタジアムの設計仕様そのものになる。</div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-label">ROADMAP</div>
+    <h2>2050年、二つの王冠を茨城へ</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="year">2026年8〜12月</div><div class="what">契約交渉・実証設計</div><p>保健所・動線・オペレーション設計</p></div>
+      <div class="tl-item"><div class="year">2027/28 開幕（1年目）</div><div class="what">柱1実証＋柱2始動</div><p>サプライズバッグ実証・紹介プログラム開始。3カ月でベースライン測定</p></div>
+      <div class="tl-item"><div class="year">2028年（2年目）</div><div class="what">柱3開始・段階拡大</div><p>フードレスキューキャラバン始動</p></div>
+      <div class="tl-item"><div class="year">2029年（3年目）</div><div class="what">CWC出場・新スタジアム共創協議</div><p>「完全資源循環スタジアム」の設計へ実証データを反映</p></div>
+      <div class="tl-item"><div class="year">2033年</div><div class="what">MERCARI STADIUM 開業・CWC出場</div><p>完全資源循環スタジアムが稼働</p></div>
+      <div class="tl-item"><div class="year">2041年</div><div class="what">KA41 世界No.1</div><p>創設100周年ビジョンの完成</p></div>
+      <div class="tl-item"><div class="year">2050年</div><div class="what">二重王冠</div><p>競技の頂点（ACLE・CWC常連）× 社会価値の頂点（SPL世界トップ・食ロスゼロ・地域産業ハブ）</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap">
+    <div class="sec-label">OFFICIAL</div>
+    <h2>公式サイト・アプリはこちら</h2>
+    <div class="grid g2">
+      <div class="card" style="text-align:center">
+        <h3>Too Good To Go 公式</h3>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAFAElEQVR4nO3dQW4sNRRAUYJYF+tgiayDjTVjpOuBJRvb/c8Zok+l0smVpXpx+efz+fwG/Nfvp28AbiQMCMKAIAwIwoAgDAjCgCAMCMKAIAwIwoAgDAjCgCAMCMKA8Mfs//Dz15877mO5z9//5H8f3f/o34+sus7s9U+Z/TxvM/tzsWJAEAYEYUAQBgRhQBAGBGFAmJ5jjKx6fj9r93P02+YVt81bRl7/fbBiQBAGBGFAEAYEYUAQBgRhQFg2xxhZ9Vx51XPx2eusmhu84ra5zcjuOYkVA4IwIAgDgjAgCAOCMCAIA8L2OcZtds8Zdj9ff/3+X2HFgCAMCMKAIAwIwoAgDAjCgPDLzTFue9/R7v0hI6feN/UKKwYEYUAQBgRhQBAGBGFAEAaE7XOM15+L754/7D53fNbu+cYrvw9WDAjCgCAMCMKAIAwIwoAgDAjL5hivnAtx6vyHU9df9e9nvfL7MGLFgCAMCMKAIAwIwoAgDAjCgPDz+XxO38P/avb5+qn5wKr9GLv3gXwrKwYEYUAQBgRhQBAGBGFAEAaE6TnGqef3q/6+/5VzuF/5HHa/F+vUXMiKAUEYEIQBQRgQhAFBGBCEAWHZfoxT7y869Zx7t1fmP986V7FiQBAGBGFAEAYEYUAQBgRhQNg+x5h12/PyU+ddjNy2n+S2fTirPh8rBgRhQBAGBGFAEAYEYUAQBoRl53yvmg+s+rqnrr/7fma98jnPft0R+zFgI2FAEAYEYUAQBgRhQBAGhGPnfH/ruQqnzs8+9Xmuctu+FCsGBGFAEAYEYUAQBgRhQBAGhGfO+T7lW7/f3XOPkdv27YxYMSAIA4IwIAgDgjAgCAOCMCAse6/UyG1/x3/q637r+6lm7/PUfo9ZVgwIwoAgDAjCgCAMCMKAIAwIy+YYp87Dvu15/+55xW3vpzp1Psbuz8eKAUEYEIQBQRgQhAFBGBCEAWHZ+Rin3v9z276IV+YMt50fMnt9cww4QBgQhAFBGBCEAUEYEIQBYfs536+c5z3yynP62875fuXnNWLFgCAMCMKAIAwIwoAgDAjCgDD9XqnZ59O7/+7/tvdZjezep3HbeeGzbtv3YsWAIAwIwoAgDAjCgCAMCMKAMD3H2L0/Ydapv++/7bzqU9/v7HVeYcWAIAwIwoAgDAjCgCAMCMKAcN0537PPy7/1XIvZ64ycmjudOmd9FSsGBGFAEAYEYUAQBgRhQBAGhGVzjFVzgNve17Tb7nMkbnsv1qk5yez9WzEgCAOCMCAIA4IwIAgDgjAgLDsf4zanzsc49f6l2fvZPU849X055xs2EgYEYUAQBgRhQBAGBGFAuG4/xqxT52+s+vezTs0HZq9zyqr5hhUDgjAgCAOCMCAIA4IwIAgDwrI5xsju86d3X+fUeRSnrjN7/VVum6tYMSAIA4IwIAgDgjAgCAOCMCBsn2PcZvd5Eafe17R77rF73nLbPMeKAUEYEIQBQRgQhAFBGBCEAeGXm2OM7N7PMGv38/tT84rb9pmMWDEgCAOCMCAIA4IwIAgDgjAgbJ9j3HZ+wu73Sq1y21xit1P7Q0asGBCEAUEYEIQBQRgQhAFBGBCWzTFOPe+ftfu9UrNOzRlmf16vn/89y4oBQRgQhAFBGBCEAUEYEIQB4efz+Zy+B7iOFQOCMCAIA4IwIAgDgjAgCAOCMCAIA4IwIAgDgjAgCAOCMCAIA8K/mnpBtHYDkT8AAAAASUVORK5CYII=" alt="Too Good To Go 公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
+        <p style="margin-bottom:14px">サプライズバッグの予約はアプリから</p>
+        <a class="btn" style="background:var(--green);font-size:14px;padding:10px 34px" href="https://www.toogoodtogo.com/ja-jp" target="_blank" rel="noopener">toogoodtogo.com/ja-jp</a>
+      </div>
+      <div class="card" style="text-align:center">
+        <h3 style="color:var(--red)">鹿島アントラーズ 公式</h3>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoCAIAAABqyz8vAAAEMUlEQVR4nO3dwW0cORBAUcvYMJzFRuTINqLNwnn0XnxtA1ywQH7pvbM0mtF88FAosD+e5/kGNd9PvwH4P4RLknBJEi5JwiVJuCQJlyThkiRckoRLknBJEi5JwiVJuCQJl6S/Vn/hnx9/T7yP7X7++nfL66x+3tW/+/b6b6+z6+dvs/p/c+KSJFyShEuScEkSLknCJUm4JC3Pcd/smpuump5Trs5Hd819T32uabs+lxOXJOGSJFyShEuScEkSLknCJWnbHPfNrrnd9H7t9P7rqbnpqtu+rzdOXJKES5JwSRIuScIlSbgkCZek8TluxfT8tTIfrXDikiRckoRLknBJEi5JwiVJuCSZ4/62a7/2tvtxPysnLknCJUm4JAmXJOGSJFyShEvS+By3Ml9c3Zf9rPczVL4vJy5JwiVJuCQJlyThkiRckoRL0rY57vRzuaadmr+emu/Wvy8nLknCJUm4JAmXJOGSJFyShEvS8hy3sq9Z5z7dP3PikiRckoRLknBJEi5JwiVJuCR9PM+z9Au79kenTe+nTt+Du0vl/7/KiUuScEkSLknCJUm4JAmXJOGStDzHfTO9P1qZH686NW+enitPv74TlyThkiRckoRLknBJEi5JwiXp2Bz31Py1vv9629x61/tZ/V6cuCQJlyThkiRckoRLknBJEi5J255ztstn3cfdtXdb2ced/l6cuCQJlyThkiRckoRLknBJEi5J2/Zx39y2pzs917xtfrzLqe/ljROXJOGSJFyShEuScEkSLknCJWnbc86m3TZPve3e2TfT+82n/g9OXJKES5JwSRIuScIlSbgkCZekbXPc2+aap+5tfXNqbjrN/biwQLgkCZck4ZIkXJKES5JwSRqf406/zrTpeeSpOXRlnv3GiUuScEkSLknCJUm4JAmXJOGSdOw5Z6fuSZjeZ73tftzp97M6l3WvAl+acEkSLknCJUm4JAmXJOGSNP6cs9vcNmet7MtO/91VTlyShEuScEkSLknCJUm4JAmXpOV93NvmoG927YNO33tw2+u/md5jdq8CX4JwSRIuScIlSbgkCZck4ZK07V6FU3uZp+aaq049n+y2e213ceKSJFyShEuScEkSLknCJUm4JI3fj3tqX3PVqb3V6b3bXXZ9rl2cuCQJlyThkiRckoRLknBJEi5Jx55zVnHqvthTe7RvPz89V3avAl+CcEkSLknCJUm4JAmXJOGSZI7726nnhE3PO0/dgzt9j4QTlyThkiRckoRLknBJEi5JwiVpfI576v7UN6fmtbuer3bbPNX9uLBAuCQJlyThkiRckoRLknBJ2jbHnb6fdZfpe2pX/+6b2+bfb059705ckoRLknBJEi5JwiVJuCQJl6SP53lOvwdY5sQlSbgkCZck4ZIkXJKES5JwSRIuScIlSbgkCZck4ZIkXJKES5JwSfoPveCQ2j/vagcAAAAASUVORK5CYII=" alt="鹿島アントラーズ公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
+        <p style="margin-bottom:14px">試合情報・公式アプリのダウンロードはこちら</p>
+        <a class="btn" style="background:var(--red);font-size:14px;padding:10px 34px" href="https://www.antlers.co.jp/" target="_blank" rel="noopener">antlers.co.jp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="quiz">
+      <h2 id="qz-title">フードロスクイズに挑戦！</h2>
+      <p id="qz-desc">50問の中から毎回20問をランダム出題。あなたはどれだけ知っていますか？</p>
+      <div id="qz-start-wrap"><button class="btn" id="qz-start" style="border:none;cursor:pointer;font-family:inherit">クイズをはじめる</button></div>
+      <div class="qz-box qz-hide" id="qz-box">
+        <div id="qz-play">
+          <div class="qz-meta"><span id="qz-progress">Q1 / 20</span><span id="qz-scorenow">正解 0</span></div>
+          <div class="qz-timer"><div id="qz-bar"></div></div>
+          <div class="qz-q" id="qz-q"></div>
+          <div id="qz-opts"></div>
+          <div class="qz-exp" id="qz-exp"></div>
+          <button class="btn qz-next" id="qz-next" style="border:none;cursor:pointer;font-family:inherit;background:var(--green);font-size:15px;padding:10px 36px">次の問題へ</button>
+        </div>
+        <div class="qz-result qz-hide" id="qz-result">
+          <div style="font-size:14px;color:var(--gray)">あなたのスコア</div>
+          <div class="qz-score" id="qz-final"></div>
+          <div class="qz-rank" id="qz-rank"></div>
+          <button class="btn" id="qz-retry" style="border:none;cursor:pointer;font-family:inherit;font-size:15px;padding:10px 36px">もう一度挑戦</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="close">未来に残そう、勝利も食も。</div>
+    <p>出典：Too Good To Go公式（2025 Impact Report等）／ハイバーニアンFC公式／Jリーグ公式（SPL参画）／鹿島アントラーズ公式（はがせるカップ・KA41）／セレッソ大阪公式／茨城県統計／春日氏講義（PSB第6期）他<br>
+    本サイトはぴあスポーツビジネスプログラム第6期の学習用資料です。記載の構想は2班による提案であり、実在の企業・クラブの公式発表ではありません。</p>
+  </div>
+</footer>
+
+
+<script>
+const QUIZ = {"title": "TGTG×フードロス 50問クイズ", "description": "Too Good To Go・フードロスの基礎＋PSB第6期2班『未来に残そう、勝利も食も。』提案書より。収録50問から毎回20問をランダム出題", "timeLimit": 25, "drawCount": 20, "theme": {"primary": "#00936B", "secondary": "#FFC94A"}, "questions": [{"type": "choice", "q": "Too Good To Go（TGTG）が創業された国は？", "options": ["スウェーデン", "デンマーク", "ノルウェー", "オランダ"], "answer": 1, "explanation": "2015年コペンハーゲンで創業、2016年にアプリ開始。北欧発の世界No.1フードロス削減アプリです。"}, {"type": "choice", "q": "TGTGで余剰食品を詰め合わせて販売する商品の名称は？", "options": ["ミステリーボックス", "サプライズバッグ", "レスキューパック", "エコセット"], "answer": 1, "explanation": "その日に余った、まだ美味しく食べられる食品をお店が詰め合わせて販売します。"}, {"type": "choice", "q": "サプライズバッグの価格の目安は？", "options": ["定価の9割程度", "定価の半額以下", "一律100円", "無料"], "answer": 1, "explanation": "通常価格の半額以下（3分の1程度）が基本。買い手・店・環境の三方良しです。"}, {"type": "choice", "q": "TGTGが日本でサービスを開始したのはいつ？", "options": ["2024年4月", "2025年1月", "2026年1月28日", "2026年6月"], "answer": 2, "explanation": "東京の新宿・渋谷・目黒エリアから開始。ローンチ時点で80店舗以上が参加しました。"}, {"type": "choice", "q": "日本はTGTGにとって何カ国目の展開国？", "options": ["10カ国目", "15カ国目", "21カ国目", "30カ国目"], "answer": 2, "explanation": "欧州・北米に続く21カ国目です。"}, {"type": "tf", "q": "TGTGの日本上陸は、アジアで初めての展開である。", "answer": true, "explanation": "日本がアジア第1号。だから「Jリーグ×TGTG」はアジア初の座を狙える空白地帯なのです。"}, {"type": "choice", "q": "日本ローンチ時にサービスが始まったエリアは？", "options": ["大阪・梅田周辺", "東京の新宿・渋谷・目黒など", "名古屋・栄周辺", "福岡・天神周辺"], "answer": 1, "explanation": "都内一部エリアからスタートし、順次拡大しています。"}, {"type": "choice", "q": "TGTGの世界の登録ユーザー数はおよそ？", "options": ["約1,200万人", "約5,000万人", "約1億2,000万人", "約3億人"], "answer": 2, "explanation": "約1億2,000万ユーザー・加盟店約18万店。世界最大級のフードロス削減プラットフォームです。"}, {"type": "choice", "q": "TGTGの世界の加盟店舗数はおよそ？", "options": ["約1.8万店", "約5万店", "約18万店", "約100万店"], "answer": 2, "explanation": "21カ国で約18万店が参加しています。"}, {"type": "choice", "q": "日本上陸時点でTGTGが公表していた累計フードロス削減量は？", "options": ["5,000万食", "1億食", "5億食以上", "100億食"], "answer": 2, "explanation": "累計5億食以上（CO2e換算約130万トン相当）を廃棄から救ってきました。"}, {"type": "choice", "q": "TGTGのビジネスモデル（主な収益源）は？", "options": ["広告収入", "加盟店からの手数料（販売額の10〜20%）", "会員の月額課金", "行政の補助金"], "answer": 1, "explanation": "店は廃棄コスト減＋新規客獲得、買い手はお得、TGTGは手数料。全員が得をする設計です。"}, {"type": "tf", "q": "サプライズバッグは、買う人が中身を自由に選べる。", "answer": false, "explanation": "中身はお店におまかせの「サプライズ」形式。だからこそ廃棄予定品を柔軟に詰められます。"}, {"type": "choice", "q": "日本上陸から約1週間で獲得したユーザー数は？", "options": ["2.5万人", "10万人", "25万人", "100万人"], "answer": 2, "explanation": "App Store無料アプリ総合1位も獲得。約3カ月半で50万人を突破しました。"}, {"type": "choice", "q": "TGTGの「Look-Smell-Taste」キャンペーンの内容は？", "options": ["商品陳列の研修", "賞味期限表示の食品を五感で確かめて食べる呼びかけ", "料理コンテスト", "店舗の衛生検査"], "answer": 1, "explanation": "「見て・嗅いで・味わって」。賞味期限は美味しさの目安で、過ぎても直ちに食べられなくなるわけではありません。"}, {"type": "choice", "q": "日本でTGTGに参加している企業として紹介されたのは？", "options": ["マクドナルド", "ファミリーマート", "スシロー", "サイゼリヤ"], "answer": 1, "explanation": "ほかにNewDays、クリスピー・クリーム・ドーナツ、地域の人気飲食店なども参加しています。"}, {"type": "choice", "q": "クリスピー・クリーム・ドーナツが2026年3月23日から始めたことは？", "options": ["全品値下げ", "TGTGを都内全店へ順次拡大", "24時間営業", "移動販売車の導入"], "answer": 1, "explanation": "「“おいしい”社会貢献と新しいドーナツとの出会い」を掲げ、都内全店に拡大しました。"}, {"type": "choice", "q": "社名「Too Good To Go」の意味に最も近いのは？", "options": ["早い者勝ち", "捨てるにはもったいなさすぎる", "持ち帰り自由", "良いものは残らない"], "answer": 1, "explanation": "「捨てるには良すぎる（もったいない）」。日本の「もったいない」精神と響き合う名前です。"}, {"type": "choice", "q": "日本の食品ロス量（2023年度推計）は？", "options": ["約164万トン", "約264万トン", "約464万トン", "約964万トン"], "answer": 2, "explanation": "前年度から8万トン減で過去最少を更新。それでも東京ドーム約4杯分に相当します。"}, {"type": "tf", "q": "2023年度、統計開始以来初めて「事業系」の食品ロスが「家庭系」を下回った。", "answer": true, "explanation": "事業系231万トン＜家庭系233万トン。企業の努力が進み、次の主戦場は家庭です。"}, {"type": "choice", "q": "日本人1人あたりの食品ロス量（年間）は？", "options": ["約7kg", "約17kg", "約37kg", "約77kg"], "answer": 2, "explanation": "国民1人あたり年間約37kg。毎日捨てている計算になります。"}, {"type": "choice", "q": "日本人1人が1日に捨てている食品ロスは、およそ何に相当する？", "options": ["おにぎり1個分", "食パン1斤分", "弁当2個分", "りんご3個分"], "answer": 0, "explanation": "約100g＝おにぎり1個分を、全国民が毎日捨てているイメージです。"}, {"type": "choice", "q": "世界で生産される食料のうち、廃棄される割合はおよそ？", "options": ["約10分の1", "約5分の1", "約3分の1", "約半分"], "answer": 2, "explanation": "FAOの推計で約3分の1、年間約13億トンが失われています。"}, {"type": "choice", "q": "食品ロス・廃棄に由来する温室効果ガスは、世界の排出量の約何%？", "options": ["1〜2%", "8〜10%", "20〜25%", "40%超"], "answer": 1, "explanation": "「食品ロスが国なら、中国・米国に次ぐ世界3位の排出国」と例えられる規模です。"}, {"type": "choice", "q": "SDGsターゲット12.3が掲げる2030年目標は？", "options": ["食品廃棄の完全ゼロ", "小売・消費レベルの食品廃棄を半減", "食品輸入の半減", "有機農業への全面転換"], "answer": 1, "explanation": "小売・消費レベルで1人あたり食品廃棄を半減、生産・サプライチェーンでの損失も減らす目標です。"}, {"type": "choice", "q": "「食品ロス削減推進法」が施行されたのは？", "options": ["2009年", "2015年", "2019年", "2024年"], "answer": 2, "explanation": "2019年10月施行。10月は食品ロス削減月間です。"}, {"type": "choice", "q": "「食品ロス削減の日」はいつ？", "options": ["1月30日", "4月1日", "10月30日", "12月31日"], "answer": 2, "explanation": "削減月間（10月）の30日。「食品ロスゼロ（30）」の語呂合わせです。"}, {"type": "choice", "q": "食品業界の「3分の1ルール」とは？", "options": ["賞味期限の最初の1/3以内に小売へ納品する商慣習", "食材の1/3まで廃棄してよいルール", "売価を1/3にするルール", "売上の1/3を寄付する義務"], "answer": 0, "explanation": "納品期限を過ぎるとまだ食べられるのに返品・廃棄に。食品ロスを生む商慣習として見直しが進んでいます。"}, {"type": "choice", "q": "「てまえどり」とは？", "options": ["棚の手前（販売期限が近い）の商品から買うこと", "開店直後に並ぶこと", "商品を予約購入すること", "手作り弁当を持参すること"], "answer": 0, "explanation": "すぐ食べるなら手前から。販売期限切れによる廃棄を減らせる、今日からできるアクションです。"}, {"type": "tf", "q": "賞味期限を過ぎた食品は、直ちに食べられなくなる。", "answer": false, "explanation": "賞味期限は「美味しく食べられる目安」。安全に食べられる期限は「消費期限」です。TGTGのLook-Smell-Tasteもこの啓発です。"}, {"type": "choice", "q": "日本の食品ロス削減の国家目標は？", "options": ["2000年度比で2030年度までに半減", "2010年比で2040年までに7割減", "毎年10%ずつ削減", "2050年ゼロ宣言"], "answer": 0, "explanation": "事業系はすでに目標達成が視野に。家庭系の削減が今後のカギです。"}, {"type": "choice", "q": "PSB第6期2班の鹿島×TGTG提案書のタイトルは？", "options": ["もったいないに、勝とう。", "未来に残そう、勝利も食も。", "食こそ勝利。", "茨城から世界へ。"], "answer": 1, "explanation": "副題は「WE BUILD A LEGACY」。TGTGのバリューと鹿島の勝利の文化を接続したコピーです。"}, {"type": "choice", "q": "英国で初めてTGTGと提携したサッカークラブは？", "options": ["セルティック", "ハイバーニアンFC", "リバプール", "ブライトン"], "answer": 1, "explanation": "スコットランド・エディンバラの名門が2021年に提携。スタジアム×TGTGの世界的先行事例です。"}, {"type": "choice", "q": "ハイバーニアンFCがスタジアムで販売したTGTGバッグの名前は？", "options": ["Surprise Bag", "Magic Bag", "Lucky Bag", "Green Bag"], "answer": 1, "explanation": "£4で販売。「先例はあるがJリーグ・アジアは空白」という提案の論拠になった事例です。"}, {"type": "tf", "q": "JリーグにはすでにTGTGと提携しているクラブがある。", "answer": false, "explanation": "Jリーグ・アジアのクラブは空白地帯。鹿島が組めば「Jリーグ初・アジア初」になれます。"}, {"type": "choice", "q": "クリスピー・クリーム・ドーナツがTGTG導入で達成した廃棄削減は約？", "options": ["1割", "3割", "5割", "8割"], "answer": 1, "explanation": "廃棄約3割削減。社員の前向きな感情が増えたという効果も報告されています。"}, {"type": "choice", "q": "クリスピーのサプライズバッグ購入者のうち、初来店客の割合は約？", "options": ["1割", "2割", "4割", "8割"], "answer": 2, "explanation": "約4割が初来店。フードロス削減が新規顧客獲得に直結した好例です。"}, {"type": "choice", "q": "提案書がKPIの根拠とした、サプライズバッグの業界実績販売率は？", "options": ["50%超", "70%超", "90%超", "100%"], "answer": 2, "explanation": "出品した分がほぼ売り切れる水準。KPIは根拠を業界実績が担保する数値だけに絞りました。"}, {"type": "choice", "q": "セレッソ大阪×ヤンマーのフードロス施策が「別アプローチ」と整理された理由は？", "options": ["廃棄した後にリサイクルする型だから", "高価格だから", "期間限定だから", "ファンクラブ限定だから"], "answer": 0, "explanation": "TGTGは「廃棄になる前に売り切る」発生抑制型。ここが競合しない差別化ポイントです。"}, {"type": "choice", "q": "提案書で「鹿島の下地（環境アクションの実績）」と位置づけられた取り組みは？", "options": ["ソーラーパネル設置", "はがせるカップ", "電気バス送迎", "ペーパーレスチケット"], "answer": 1, "explanation": "リユースカップ導入済み＝スタジアムで環境施策を実行できるオペレーション力の証明です。"}, {"type": "choice", "q": "提案書の長期構想「完全資源循環スタジアム」を構成する3要素は？", "options": ["TGTG×はがせるカップ×堆肥化", "太陽光×風力×水素", "EV×AI×5G", "植林×募金×清掃"], "answer": 0, "explanation": "「廃棄前に売り切る→使い回す→土に還す」の循環をスタジアムで完結させる構想です。"}, {"type": "choice", "q": "SPL（Sport Positive Leagues）とは？", "options": ["クラブの環境アクションをスコア化する国際イニシアチブ", "選手の年俸ランキング", "観客動員数ランキング", "eスポーツの大会"], "answer": 0, "explanation": "気候変動対策12項目でクラブを評価。春日氏いわく「環境アクションの競技化」です。"}, {"type": "choice", "q": "JリーグのSPL参画の位置づけは？", "options": ["世界初の参画", "アジア初・世界5リーグ目", "欧州に次ぐ10番目", "オブザーバー参加のみ"], "answer": 1, "explanation": "プレミアリーグなど欧州4リーグに続く5番目でアジア初。TGTG（食品領域の環境アクション）と直結します。"}, {"type": "tf", "q": "SPLにおけるJリーグクラブの初回スコアは2026年に発表される。", "answer": true, "explanation": "2026年の特別大会から正式エントリー。だからこそ「今」TGTG提携がスコアと注目を先取りする好機です。"}, {"type": "choice", "q": "茨城県の農業産出額は全国何位？（提案書より）", "options": ["1位", "3位", "7位", "15位"], "answer": 1, "explanation": "全国3位の農業県で、食品製造も全国7位。「食の県」の中心に鹿島があります。"}, {"type": "choice", "q": "茨城県の食品ロス発生源で約70%を占めるのは？", "options": ["家庭", "飲食店", "製造業", "小売業"], "answer": 2, "explanation": "発生源（食品製造業）と高い削減意識の両方を持つ、日本で最もTGTGと相性の良い立地です。"}, {"type": "choice", "q": "茨城県民の食品ロス問題の認知度は？（提案書より）", "options": ["38%", "58%", "78%", "98%"], "answer": 3, "explanation": "市民の意識の高さが「アントラーズ×TGTGで共創する新しいシビックプライド」の土台になります。"}, {"type": "choice", "q": "提案書がROO（スポンサーシップの目的）の主軸に置いたのは？", "options": ["チケット完売", "パートナー企業のESG価値の最大化", "有名選手の獲得", "放映権収入の増加"], "answer": 1, "explanation": "スタジアムを「食ロス削減のショーケース」に。シビックプライドや勝利を願う感情は副次に置きました。"}, {"type": "choice", "q": "KPIに使われた、1食あたりのCO2削減係数は？", "options": ["0.7kg", "1.5kg", "2.7kg", "10kg"], "answer": 2, "explanation": "TGTG基準の係数（2.7kg-CO2e/食）。販売率90%とともに、業界実績が根拠を担保する数値です。"}, {"type": "choice", "q": "提案の柱1「小規模実証」の設計は？", "options": ["全売店で一斉導入", "人気スタグル限定・試合後30分・メインゲート受取で3カ月実証", "オンライン限定販売", "練習場のみで実施"], "answer": 1, "explanation": "まず3カ月でベースラインを測定し、双方で目標を合意する「測定設計型」。質疑で数字を突かれない構えです。"}, {"type": "choice", "q": "提案書が描く2050年の鹿島アントラーズ「二重王冠」とは？", "options": ["リーグ優勝と天皇杯の2冠", "競技の頂点と社会価値の頂点の同時達成", "国内と海外のファン数No.1", "売上と利益の日本一"], "answer": 1, "explanation": "ACL・CWC制覇（競技）と食ロスゼロ・環境先進・地域産業ハブ（社会価値）を両立するクラブ像。2029 ACLE→2033新スタジアム→2041 KA41→2050二重王冠のロードマップです。"}]};
+(function(){
+  const N = QUIZ.drawCount || 20, LIMIT = QUIZ.timeLimit || 25;
+  let deck = [], idx = 0, score = 0, timer = null, remain = LIMIT, answered = false;
+  const $ = id => document.getElementById(id);
+
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+  function start(){
+    deck = shuffle(QUIZ.questions.slice()).slice(0, N);
+    idx = 0; score = 0;
+    $("qz-start-wrap").classList.add("qz-hide");
+    $("qz-box").classList.remove("qz-hide");
+    $("qz-result").classList.add("qz-hide");
+    $("qz-play").classList.remove("qz-hide");
+    show();
+  }
+
+  function show(){
+    const q = deck[idx]; answered = false;
+    $("qz-progress").textContent = "Q" + (idx+1) + " / " + N;
+    $("qz-scorenow").textContent = "正解 " + score;
+    $("qz-q").textContent = q.q;
+    $("qz-exp").style.display = "none";
+    $("qz-next").style.display = "none";
+    const box = $("qz-opts"); box.innerHTML = "";
+    const opts = q.type === "tf" ? ["○ 正しい", "× 間違い"] : q.options;
+    opts.forEach((t, i) => {
+      const b = document.createElement("button");
+      b.className = "qz-opt"; b.textContent = t;
+      b.onclick = () => answer(i);
+      box.appendChild(b);
+    });
+    remain = LIMIT;
+    $("qz-bar").style.width = "100%";
+    clearInterval(timer);
+    timer = setInterval(tick, 1000);
+  }
+
+  function tick(){
+    remain--;
+    $("qz-bar").style.width = Math.max(0, remain / LIMIT * 100) + "%";
+    if (remain <= 0) answer(-1);
+  }
+
+  function answer(i){
+    if (answered) return; answered = true;
+    clearInterval(timer);
+    const q = deck[idx];
+    const correct = q.type === "tf" ? (q.answer ? 0 : 1) : q.answer;
+    const btns = $("qz-opts").children;
+    for (const b of btns) b.disabled = true;
+    if (btns[correct]) btns[correct].classList.add("correct");
+    if (i === correct) { score++; }
+    else if (i >= 0 && btns[i]) { btns[i].classList.add("wrong"); }
+    $("qz-scorenow").textContent = "正解 " + score;
+    $("qz-exp").textContent = (i === correct ? "正解！ " : i < 0 ? "時間切れ… " : "残念！ ") + (q.explanation || "");
+    $("qz-exp").style.display = "block";
+    $("qz-next").textContent = idx === N-1 ? "結果を見る" : "次の問題へ";
+    $("qz-next").style.display = "inline-block";
+  }
+
+  function next(){
+    idx++;
+    if (idx >= N) return finish();
+    show();
+  }
+
+  function finish(){
+    $("qz-play").classList.add("qz-hide");
+    $("qz-result").classList.remove("qz-hide");
+    $("qz-final").textContent = score + " / " + N;
+    const r = score / N;
+    $("qz-rank").textContent =
+      r >= 0.9 ? "フードレスキュー・マイスター！ 二重王冠級の知識です" :
+      r >= 0.7 ? "サステナ上級者！ スタジアムのショーケースを任せたい" :
+      r >= 0.5 ? "いい調子！ サプライズバッグからさらに学ぼう" :
+      "まずは「もったいない」から。もう一度挑戦してみよう！";
+  }
+
+  $("qz-start").onclick = start;
+  $("qz-next").onclick = next;
+  $("qz-retry").onclick = start;
+})();
+</script>
+
+</body>
+</html>
