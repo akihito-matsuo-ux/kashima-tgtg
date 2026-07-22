@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>「捨てない」を、強さに。｜Too Good To Go × 鹿島アントラーズ</title>
+<title>ロスタイムに、サプライズを。｜Too Good To Go × 鹿島アントラーズ</title>
 <style>
   :root {
     --green: #00573D;
@@ -43,6 +43,11 @@
   header h1 { font-size: clamp(30px, 6vw, 56px); line-height: 1.3; margin-bottom: 18px; }
   header .sub { font-size: clamp(15px, 2.2vw, 20px); color: #CFE3D8; font-weight: bold; }
   header .team { margin-top: 34px; font-size: 13px; color: #9FC4B3; }
+  header .badge {
+    display: inline-block; background: rgba(201,164,76,.15); border: 1px solid var(--gold);
+    color: #F0DFB6; font-size: 13.5px; font-weight: bold; border-radius: 30px;
+    padding: 8px 22px; margin-top: 26px;
+  }
 
   section { padding: 70px 0; }
   section:nth-of-type(even) { background: #F7FAF8; }
@@ -86,21 +91,51 @@
   }
   .p1 .pillar-tag { background: var(--green); }
   .p2 .pillar-tag { background: var(--red); }
-  .p3 .pillar-tag { background: var(--gold-dark); }
 
-  /* Stadium */
-  .stadium-img {
-    border: 2px dashed var(--green2); border-radius: 14px; background: var(--green-bg);
-    min-height: 260px; display: flex; align-items: center; justify-content: center;
-    color: var(--green2); font-weight: bold; text-align: center; padding: 20px;
-    margin-bottom: 26px;
+  /* Accordion */
+  details.acc {
+    background: #fff; border-radius: 14px; box-shadow: 0 3px 14px rgba(0,0,0,.07);
+    margin-bottom: 14px; overflow: hidden;
   }
-  .flow { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
-  .flow .card { flex: 1; min-width: 200px; }
-  .flow .arrow { align-self: center; color: var(--gold); font-size: 26px; font-weight: bold; }
+  details.acc summary {
+    cursor: pointer; padding: 18px 22px; font-weight: bold; color: var(--green);
+    font-size: 15.5px; list-style: none; display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+  }
+  details.acc summary::-webkit-details-marker { display: none; }
+  details.acc summary::after { content: "＋"; color: var(--gold); font-size: 20px; flex: none; }
+  details.acc[open] summary::after { content: "−"; }
+  details.acc .acc-body { padding: 0 22px 24px; }
+
+  /* Experience report */
+  .report-quote {
+    border-left: 4px solid var(--gold); background: #FDF8EC;
+    padding: 18px 22px; border-radius: 0 12px 12px 0; font-size: 14.5px; margin: 18px 0;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip {
+    background: var(--green-bg); color: var(--green); font-weight: bold;
+    font-size: 13px; border-radius: 20px; padding: 6px 16px;
+  }
+  .photo-slot {
+    border: 2px dashed var(--green2); border-radius: 14px; background: var(--green-bg);
+    min-height: 240px; display: flex; align-items: center; justify-content: center;
+    color: var(--green2); font-weight: bold; text-align: center; padding: 20px; font-size: 14px;
+  }
+  .photo-slot img, .report-photo { width: 100%; border-radius: 14px; display: block; }
+
+  /* Participation board */
+  .board { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin: 6px 0 30px; }
+  .board .b-item {
+    background: #fff; border: 2px solid var(--green); border-radius: 14px;
+    padding: 14px 26px; text-align: center; min-width: 150px;
+  }
+  .board .b-num { font-size: 36px; font-weight: bold; color: var(--green); line-height: 1.2; }
+  .board .b-label { font-size: 12.5px; color: var(--gray); font-weight: bold; }
+  .board-note { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: 26px; }
 
   /* Timeline */
-  .timeline { position: relative; margin: 30px 0 10px; padding-left: 26px; border-left: 3px solid var(--gold); }
+  .timeline { position: relative; margin: 20px 0 10px; padding-left: 26px; border-left: 3px solid var(--gold); }
   .tl-item { position: relative; padding: 0 0 26px 18px; }
   .tl-item::before {
     content: ""; position: absolute; left: -35px; top: 8px;
@@ -124,12 +159,18 @@
   }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
 
+  /* Comments */
+  .form-box { background: #fff; border-radius: 16px; box-shadow: 0 3px 14px rgba(0,0,0,.07); overflow: hidden; }
+  .form-box iframe { width: 100%; border: none; min-height: 760px; display: block; }
+  .form-pending {
+    padding: 40px 24px; text-align: center; color: var(--gray); font-size: 14px;
+  }
+
   footer { background: #00382A; color: #9FC4B3; padding: 34px 0; font-size: 11.5px; }
   footer .close { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 14px; }
 
   @media (max-width: 640px) {
     section { padding: 48px 0; }
-    .flow .arrow { width: 100%; text-align: center; transform: rotate(90deg); }
   }
 
   /* Quiz engine */
@@ -191,168 +232,202 @@
 <nav>
   <div class="wrap">
     <span class="brand">鹿島 × Too Good To Go</span>
-    <a href="#about">TGTGとは</a>
-    <a href="#why">課題</a>
-    <a href="#pillars">ご提案</a>
-    <a href="#kpi">KPI</a>
-    <a href="#roadmap">ロードマップ</a>
+    <a href="#recap">ご提案</a>
+    <a href="#report">体験レポ</a>
     <a href="#quiz">クイズ</a>
     <a href="#apps">公式アプリ</a>
+    <a href="#comments">コメント</a>
   </div>
 </nav>
 
 <header>
   <div class="wrap">
-    <div class="kicker">フードロス“世界No.1”アプリ × SPL世界一を狙うJ王者</div>
-    <h1>「捨てない」を、<br>強さに。</h1>
-    <div class="sub">Too Good To Go × 鹿島アントラーズ｜共創型パートナーシップ構想（2027/28シーズン〜）</div>
+    <div class="kicker">フードロス“世界No.1”アプリと、SPL世界一を狙うJ王者 ―― 2027/28シーズンからの共創</div>
+    <h1>ロスタイムに、<br>サプライズを。</h1>
+    <div class="sub">Too Good To Go × 鹿島アントラーズ｜共創型パートナーシップ提案</div>
     <div class="team">ぴあスポーツビジネスプログラム第6期｜パートナーシップセールス実践｜2班</div>
   </div>
 </header>
 
-<section id="about">
+<section id="recap">
   <div class="wrap">
     <div class="sec-label">ABOUT</div>
     <h2>Too Good To Go とは ― <span class="accent">余剰食品を“サプライズバッグ”で救うアプリ</span></h2>
-    <p style="max-width:860px; margin-bottom:26px;">デンマーク発、世界最大級のフードロス削減プラットフォーム。閉店前の余剰食品を、中身おまかせ・定価の約1/2以下で販売する「サプライズバッグ」で、廃棄予定の食品が「商品」に変わる。店舗は廃棄コストが売上に、ユーザーは割安＋楽しい社会貢献、環境は1袋＝CO2e約2.7kg削減の「三方良し」。</p>
-    <div class="grid g3" style="margin-bottom:22px">
-      <div class="card"><h3>1. 店舗が出品</h3><p>売れ残りそうな食品をバッグに詰め、アプリに出品（在庫・時間を指定）</p></div>
-      <div class="card"><h3>2. ユーザーが予約・決済</h3><p>近くのお店をアプリで検索し、その場で予約・キャッシュレス決済</p></div>
-      <div class="card"><h3>3. 受取で“救済”完了</h3><p>予約時間にお店で受取。廃棄されるはずだった食が、食卓へ</p></div>
-    </div>
-    <div class="grid g3">
-      <div class="card tint"><div class="big">21カ国<small>サービス展開国（2025年 日本上陸・首都圏で展開中）</small></div></div>
-      <div class="card tint"><div class="big">1.2億人／18万店舗<small>登録ユーザー数・提携店舗数</small></div></div>
-      <div class="card tint"><div class="big">累計3億食＋<small>救済＝CO2e約81万t回避</small></div></div>
-    </div>
-    <p style="font-size:11px;color:var(--gray);margin-top:14px">出典：Too Good To Go 公式／Too Good To Go Japan（1袋＝CO2e約2.7kg換算含む）</p>
+    <p style="max-width:860px;margin-bottom:26px">提案の核心は3つ ― <b>①スタジアム売店の余剰を「サプライズバッグ」で売り切るフードレスキュー</b>、<b>②TGTG×メルペイ×鹿島アプリ連携で削減CO2eをSPLスコアに変換</b>、<b>③鹿島から茨城へ広げる「鹿島モデル」の全国展開</b>。各パートの詳細・数字の根拠・出典は、気になるところから開いてご覧ください。</p>
+
+    <details class="acc">
+      <summary>Too Good To Go とは ― 余剰食品を“サプライズバッグ”で救うアプリ</summary>
+      <div class="acc-body">
+        <p style="max-width:860px; margin-bottom:22px; font-size:14px">デンマーク発、世界最大級のフードロス削減プラットフォーム。閉店前の余剰食品を、中身おまかせ・定価の約1/2以下で販売する「サプライズバッグ」で、廃棄予定の食品が「商品」に変わる。店舗は廃棄コストが売上に、ユーザーは割安＋楽しい社会貢献、環境は1袋＝CO2e約2.7kg削減の「三方良し」。</p>
+        <div class="grid g3" style="margin-bottom:18px">
+          <div class="card tint"><h3>1. 店舗が出品</h3><p>売れ残りそうな食品をバッグに詰め、アプリに出品（在庫・時間を指定）</p></div>
+          <div class="card tint"><h3>2. ユーザーが予約・決済</h3><p>近くのお店をアプリで検索し、その場で予約・キャッシュレス決済</p></div>
+          <div class="card tint"><h3>3. 受取で“救済”完了</h3><p>予約時間にお店で受取。廃棄されるはずだった食が、食卓へ</p></div>
+        </div>
+        <div class="grid g3">
+          <div class="card tint"><div class="big">21カ国<small>サービス展開国（2025年 日本上陸・首都圏で展開中）</small></div></div>
+          <div class="card tint"><div class="big">1.2億人／18万店舗<small>登録ユーザー数・提携店舗数</small></div></div>
+          <div class="card tint"><div class="big">累計3億食＋<small>救済＝CO2e約81万t回避</small></div></div>
+        </div>
+        <p style="font-size:11px;color:var(--gray);margin-top:14px">出典：Too Good To Go 公式／Too Good To Go Japan（1袋＝CO2e約2.7kg換算含む）</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>なぜアントラーズがフードロス？？ ― 企業選定理由</summary>
+      <div class="acc-body">
+        <p style="font-weight:bold;color:var(--green);margin-bottom:14px">茨城＝「食の供給力」と「フードロス認知度」が全国トップクラス</p>
+        <div class="grid g3" style="margin-bottom:14px">
+          <div class="card tint"><div class="big">全国3位<small>農業産出額</small></div></div>
+          <div class="card tint"><div class="big">約70%<small>製造廃棄物に占める食品の割合</small></div></div>
+          <div class="card tint"><div class="big">98%<small>フードロスへの認知度</small></div></div>
+        </div>
+        <p style="font-size:14px;margin-bottom:22px">→ 茨城県の目標：フードロスを2024年実績<b>13.7万トン</b>から2030年までに<b>12.0万トン</b>へ</p>
+        <p style="font-weight:bold;color:var(--red);margin-bottom:14px">鹿島アントラーズのフードロスへの取り組み</p>
+        <div class="grid g3" style="margin-bottom:6px">
+          <div class="card" style="background:var(--red-bg);box-shadow:none"><h3 style="color:var(--red)">フードロス意識向上</h3><p>・フードドライブ<br>・食育キャラバン</p></div>
+          <div class="card" style="border:2px solid var(--red)"><h3 style="color:var(--red)">廃棄物の根本対策</h3><p><b>空白</b><br>→ アントラーズの想定課題</p></div>
+          <div class="card" style="background:var(--red-bg);box-shadow:none"><h3 style="color:var(--red)">食べ残し・飲み残しの回収</h3><p>・専用回収箱の設定<br>・残飯の堆肥化（コンポスト）</p></div>
+        </div>
+        <div class="banner">飲食店の売れ残りフードロス削減に取り組むTGTGとタッグを組み、この「空白」＝鹿島アントラーズの課題も解決する。</div>
+        <p style="font-size:11px;color:var(--gray);margin-top:14px">出典：茨城県 農業産出額・食品ロス統計（2023）／鹿島アントラーズ公式</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>日本市場拡大フェーズにおける4つの課題</summary>
+      <div class="acc-body">
+        <div class="grid g2" style="margin-bottom:18px">
+          <div class="card tint">
+            <h3>英国（先行市場）</h3>
+            <p style="font-size:15px"><b>1,800万人</b> 登録（国民4人に1人）<br><b>5万店舗</b> が対応済み</p>
+          </div>
+          <div class="card" style="border:2px solid #E4C9CF">
+            <h3 style="color:var(--red)">日本（拡大フェーズ）</h3>
+            <p style="font-size:15px"><b>40万人</b> 登録・<b>約100店舗</b>（首都圏中心）<br>非認知 <b>88%</b>（独自アンケート調査より）</p>
+          </div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="issue"><span class="num">1</span><div><b>ブランド認知の向上</b><br><span style="font-size:13px;color:var(--gray)">日本市場での認知をどう高めるか</span></div></div></div>
+          <div class="card"><div class="issue"><span class="num">2</span><div><b>ユーザー・加盟店の拡大</b><br><span style="font-size:13px;color:var(--gray)">新規ユーザーと店舗をどう獲得するか</span></div></div></div>
+          <div class="card"><div class="issue"><span class="num">3</span><div><b>新たな利用シーンの創出</b><br><span style="font-size:13px;color:var(--gray)">スポーツ・自治体・企業との連携拡大</span></div></div></div>
+          <div class="card"><div class="issue"><span class="num">4</span><div><b>モデルケースの構築</b><br><span style="font-size:13px;color:var(--gray)">横展開可能な成功事例をどう作るか</span></div></div></div>
+        </div>
+        <div class="banner">この4課題を、鹿島アントラーズの「6アセット＋2つの力」で解決する。平均継続22年のパートナー網（75社＋ビジネスクラブ101社）、国内最多21冠のブランド、ホーム平均2.8万人のスタジアム、47.9万Fan ID、5市の行政・学校網、はがせるカップ×SPL参画 ―― そしてFIT感＝スタートアップ精神。</div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>ご提案①② ― 試合日が“広告”になる</summary>
+      <div class="acc-body">
+        <div class="grid g2" style="margin-bottom:18px">
+          <div class="card p1" style="background:var(--green-bg);box-shadow:none">
+            <span class="pillar-tag">提案①</span>
+            <h3>スタジアムでのフードレスキュー</h3>
+            <p style="margin-bottom:10px">ホーム開催日、スタジアム売店にTGTGを導入。余った食を来場者が観戦の思い出と一緒に持ち帰る。</p>
+            <p style="font-size:13px"><b>試合中：</b>いつもの売店で通常販売<br>
+            <b>試合終盤：</b>余剰を2ルートで“商品”に ― ①売店スタッフがそのままTGTGへ出品 ②鹿嶋市内飲食店のバッグを帰宅動線上の特設ブースで受取<br>
+            <b>試合後：</b>帰り道にピックアップ</p>
+            <p style="margin-top:10px;font-weight:bold;color:var(--green)">既存の売店オペ×既存アプリ×余剰食材で完結 ― アクティベーションコスト最小限</p>
+          </div>
+          <div class="card p2" style="background:var(--green-bg);box-shadow:none">
+            <span class="pillar-tag">提案②</span>
+            <h3>TGTG × メルペイ × 鹿島アプリ連携</h3>
+            <p style="margin-bottom:10px">アプリ（入口）×メルペイ（決済・既設）×TGTG（エンジン）＝摩擦ゼロで“参加”と“計測”を両立。</p>
+            <p style="font-size:13px">①試合中に鹿島アプリで通知 → ②TGTGアプリで予約×メルペイ決済 → ③試合終了後に出口でピックアップ → ④削減CO2eを表示 → ⑤TGTG本体へ登録誘導</p>
+            <p style="margin-top:10px;font-size:13px">救済食数＝CO2eを鹿島アプリでスコア化し、アスエネがGHG算定→SPL申告。<b style="color:var(--red)">連携は“SPLスコアの生成装置”になる。</b></p>
+          </div>
+        </div>
+        <div class="grid g2">
+          <div class="card tint">
+            <h3>ハード面｜仕組み・設備・現場運営</h3>
+            <p style="font-size:13px">売店の余剰販売オペ・受取カウンター／アプリ導線統合／クラブアセットでの送客／データダッシュボード（CO2・廃棄量の可視化）／鹿嶋市内・茨城県内の加盟店促進／2033年 新スタジアム設計への組込み</p>
+          </div>
+          <div class="card tint">
+            <h3 style="color:var(--gold-dark)">ソフト面｜人・体験・発信・関係性</h3>
+            <p style="font-size:13px">ファン参加型ブランド体験／試合体験へのアプリ導線統合／選手・クラブ発信のストーリーテリング／食育・教育プログラム接続／地域飲食店の巻き込み・B2Bエンゲージメント</p>
+          </div>
+        </div>
+        <p style="margin-top:16px;font-weight:bold;color:var(--green)">ハード・ソフトの両輪で、「鹿島モデル」は全国展開可能な形へ。</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>ROO / KPI・投資回収シミュレーション（数字の根拠）</summary>
+      <div class="acc-body">
+        <div style="overflow-x:auto;margin-bottom:18px">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:560px">
+            <tr style="background:var(--green);color:#fff">
+              <th style="padding:10px 14px;text-align:left">ROO（目的）</th><th style="padding:10px 14px;text-align:left">主KPI</th>
+              <th style="padding:10px 14px">1年目</th><th style="padding:10px 14px">2年目</th><th style="padding:10px 14px">3年目</th>
+            </tr>
+            <tr style="background:#F4F9F6"><td style="padding:10px 14px">認知拡大</td><td style="padding:10px 14px">ユーザー登録者数</td><td style="padding:10px 14px;text-align:center">22,000人</td><td style="padding:10px 14px;text-align:center">33,000人</td><td style="padding:10px 14px;text-align:center"><b>44,000人</b></td></tr>
+            <tr><td style="padding:10px 14px">市場拡大</td><td style="padding:10px 14px">新規加盟店数</td><td style="padding:10px 14px;text-align:center">70店舗</td><td style="padding:10px 14px;text-align:center">600店舗</td><td style="padding:10px 14px;text-align:center"><b>1,100店舗</b></td></tr>
+            <tr style="background:#F4F9F6"><td style="padding:10px 14px">フードロス削減</td><td style="padding:10px 14px">CO2削減量</td><td style="padding:10px 14px;text-align:center">94t</td><td style="padding:10px 14px;text-align:center">232t</td><td style="padding:10px 14px;text-align:center"><b>270t</b></td></tr>
+          </table>
+        </div>
+        <div class="grid g2">
+          <div class="card" style="border:2px solid var(--gold)">
+            <h3 style="color:var(--gold-dark)">投資回収シミュレーション（3年累計・試算）</h3>
+            <p style="font-size:13.5px">スポンサーフィー支払 <b>3.0億円</b>（1.0億円×3年）に対し、ユーザー登録増による拡散効果 ≈1.5億円＋新規加盟店収入（年会費＋手数料）≈1.0億円＋試合日売上・平均2.8万人の露出・PR価値 ≈0.5億円 ＝ <b style="color:var(--red)">合計3.0億円。KPI達成（最低ライン）で3年全額回収。</b></p>
+          </div>
+          <div class="card tint">
+            <h3>KPIの測定方法</h3>
+            <p style="font-size:13.5px">登録者数・加盟店数はQRコード経由の新規登録で測定。CO2削減量は、TGTGアプリに実装済みの可視化機能を活用して自動計測し、SPL気候アクション報告へ組み込む。</p>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gray);margin-top:14px">出典：本提案（標準シナリオ・試算）／Too Good To Go 公式インパクト算定（1袋≒2.7kg CO2e）</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>ロードマップ ― スタジアムから未来へ、SPL世界一への道</summary>
+      <div class="acc-body">
+        <div class="timeline">
+          <div class="tl-item"><div class="year">2026年</div><div class="what">パートナー契約締結・導入準備</div><p>スタジアム店舗への導入準備</p></div>
+          <div class="tl-item"><div class="year">2027年｜スタジアム</div><div class="what">ホーム開幕戦よりサービス開始</div><p>鹿島国立での実証・効果検証</p></div>
+          <div class="tl-item"><div class="year">2028年｜ホームタウン展開</div><div class="what">鹿嶋市内店舗への加盟促進</div><p>効果検証を重ねPDCAを回す</p></div>
+          <div class="tl-item"><div class="year">2029年｜茨城県全域へ</div><div class="what">茨城県内店舗への加盟促進</div><p>「鹿島モデル」を県全域へ拡大</p></div>
+          <div class="tl-item"><div class="year">2033年</div><div class="what">SPL優勝・新スタジアム開業</div><p>世界的なブランド発信へ。新スタジアム設計にフードレスキューを組込み</p></div>
+          <div class="tl-item"><div class="year">2041年</div><div class="what">KA41 世界No.1</div><p>創設100周年ビジョンの完成</p></div>
+        </div>
+        <div class="card tint" style="margin-top:10px">
+          <h3>SPL（Sport Positive Leagues）とは</h3>
+          <p style="font-size:13.5px">サッカークラブの気候変動対策を数値化・可視化し、環境への取り組みを競う国際的なリーグ。12カテゴリー・27点満点のマトリクス方式で、プレミア（2018/19）→ブンデス→リーグアン→EFLと拡大。Jリーグが5番目・アジア初として参画（2026本格）。鹿島はSPLでJリーグ内1位・満点27点を志向し、「世界一グリーンなクラブ」の座を狙う。</p>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<section id="why">
+<section id="report">
   <div class="wrap">
-    <div class="sec-label">CHALLENGES</div>
-    <h2>日本市場拡大フェーズにおける<span class="accent">4つの課題</span></h2>
-    <div class="grid g2" style="margin-bottom:22px">
-      <div class="card tint">
-        <h3>英国（先行市場）</h3>
-        <p style="font-size:15px"><b>1,800万人</b> 登録（国民4人に1人）<br><b>5万店舗</b> が対応済み</p>
+    <div class="sec-label">MY FOOD RESCUE</div>
+    <h2>実際に<span class="accent">使ってみた</span></h2>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="card tint" style="margin-bottom:12px">
+          <h3>🛍️ レスキュー記録</h3>
+          <p style="font-size:13.5px"><b>MR.FRIENDLY Cafe ― 渋谷区（恵比寿・代官山エリア）</b><br>
+          東京都渋谷区恵比寿西2-18-6 SPビル1F<br>
+          MR.FRIENDLYの可愛いホットケーキ詰め合わせ　<span style="color:var(--gray);text-decoration:line-through">¥1,296</span> <b style="color:var(--red);font-size:16px">¥678</b>（約48%OFF）　★4.4</p>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card tint" style="text-align:center">
+            <div class="big" style="font-size:28px">10kWh<small>防いだCO2e</small></div>
+          </div>
+          <div class="card tint" style="text-align:center">
+            <div class="big" style="font-size:28px">¥737<small>節約額</small></div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gray);margin-top:10px">※Too Good To Goアプリのマイページ実績より（提案者アカウント）</p>
       </div>
-      <div class="card" style="border:2px solid #E4C9CF">
-        <h3 style="color:var(--red)">日本（拡大フェーズ）</h3>
-        <p style="font-size:15px"><b>40万人</b> 登録・<b>約100店舗</b>（首都圏中心）<br>非認知 <b>88%</b>（独自アンケート調査より）</p>
-      </div>
-    </div>
-    <div class="grid g2">
-      <div class="card"><div class="issue"><span class="num">1</span><div><b>ブランド認知の向上</b><br><span style="font-size:13px;color:var(--gray)">日本市場での認知をどう高めるか</span></div></div></div>
-      <div class="card"><div class="issue"><span class="num">2</span><div><b>ユーザー・加盟店の拡大</b><br><span style="font-size:13px;color:var(--gray)">新規ユーザーと店舗をどう獲得するか</span></div></div></div>
-      <div class="card"><div class="issue"><span class="num">3</span><div><b>新たな利用シーンの創出</b><br><span style="font-size:13px;color:var(--gray)">スポーツ・自治体・企業との連携拡大</span></div></div></div>
-      <div class="card"><div class="issue"><span class="num">4</span><div><b>モデルケースの構築</b><br><span style="font-size:13px;color:var(--gray)">横展開可能な成功事例をどう作るか</span></div></div></div>
-    </div>
-    <div class="banner">この4課題を、鹿島アントラーズの「6アセット＋2つの力」で解決する。平均継続22年のパートナー網（75社＋ビジネスクラブ101社）、国内最多21冠のブランド、ホーム平均2.3万人のスタジアム、47.9万Fan ID、5市の行政・学校網、はがせるカップ×SPL参画 ―― そしてFIT感＝スタートアップ精神。</div>
-  </div>
-</section>
-
-<section id="pillars">
-  <div class="wrap">
-    <div class="sec-label">OUR PROPOSAL</div>
-    <h2>ご提案 ― <span class="accent">試合日が“広告”になる</span></h2>
-    <div class="grid g2" style="margin-bottom:22px">
-      <div class="card p1">
-        <span class="pillar-tag">提案①</span>
-        <h3>スタジアムでのフードレスキュー</h3>
-        <p style="margin-bottom:10px">ホーム開催日、スタジアム売店にTGTGを導入。余った食を来場者が観戦の思い出と一緒に持ち帰る。</p>
-        <p style="font-size:13px"><b>試合中：</b>いつもの売店で通常販売<br>
-        <b>試合終盤：</b>余剰を2ルートで“商品”に ― ①売店スタッフがそのままTGTGへ出品 ②鹿嶋市内飲食店のバッグを帰宅動線上の特設ブースで受取<br>
-        <b>試合後：</b>帰り道にピックアップ</p>
-        <p style="margin-top:10px;font-weight:bold;color:var(--green)">既存の売店オペ×既存アプリ×余剰食材で完結 ― アクティベーションコスト最小限</p>
-      </div>
-      <div class="card p2">
-        <span class="pillar-tag">提案②</span>
-        <h3>TGTG × メルペイ × 鹿島アプリ連携</h3>
-        <p style="margin-bottom:10px">アプリ（入口）×メルペイ（決済・既設）×TGTG（エンジン）＝摩擦ゼロで“参加”と“計測”を両立。</p>
-        <p style="font-size:13px">①試合中に鹿島アプリで通知 → ②TGTGアプリで予約×メルペイ決済 → ③試合終了後に出口でピックアップ → ④削減CO2eを表示 → ⑤TGTG本体へ登録誘導</p>
-        <p style="margin-top:10px;font-size:13px">救済食数＝CO2eを鹿島アプリでスコア化し、アスエネがGHG算定→SPL申告。<b style="color:var(--red)">連携は“SPLスコアの生成装置”になる。</b></p>
-      </div>
-    </div>
-    <div class="grid g2">
-      <div class="card tint">
-        <h3>ハード面｜仕組み・設備・現場運営</h3>
-        <p style="font-size:13px">売店の余剰販売オペ・受取カウンター／アプリ導線統合／クラブアセットでの送客／データダッシュボード（CO2・廃棄量の可視化）／鹿嶋市内・茨城県内の加盟店促進／2033年 新スタジアム設計への組込み</p>
-      </div>
-      <div class="card tint">
-        <h3 style="color:var(--gold-dark)">ソフト面｜人・体験・発信・関係性</h3>
-        <p style="font-size:13px">ファン参加型ブランド体験／試合体験へのアプリ導線統合／選手・クラブ発信のストーリーテリング／食育・教育プログラム接続／地域飲食店の巻き込み・B2Bエンゲージメント</p>
-      </div>
-    </div>
-    <p style="margin-top:18px;font-weight:bold;color:var(--green)">ハード・ソフトの両輪で、「鹿島モデル」は全国展開可能な形へ。</p>
-  </div>
-</section>
-
-<section id="kpi">
-  <div class="wrap">
-    <div class="sec-label">ROO / KPI</div>
-    <h2>ROO＝<span class="accent">「サステナブルな地域社会の共創」</span> ― 鹿島から茨城へ</h2>
-    <div style="overflow-x:auto;margin-bottom:22px">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:560px">
-        <tr style="background:var(--green);color:#fff">
-          <th style="padding:10px 14px;text-align:left">ROO（目的）</th><th style="padding:10px 14px;text-align:left">主KPI</th>
-          <th style="padding:10px 14px">1年目</th><th style="padding:10px 14px">2年目</th><th style="padding:10px 14px">3年目</th>
-        </tr>
-        <tr style="background:#F4F9F6"><td style="padding:10px 14px">認知拡大</td><td style="padding:10px 14px">ユーザー登録者数</td><td style="padding:10px 14px;text-align:center">22,000人</td><td style="padding:10px 14px;text-align:center">33,000人</td><td style="padding:10px 14px;text-align:center"><b>44,000人</b></td></tr>
-        <tr><td style="padding:10px 14px">市場拡大</td><td style="padding:10px 14px">新規加盟店数</td><td style="padding:10px 14px;text-align:center">70店舗</td><td style="padding:10px 14px;text-align:center">600店舗</td><td style="padding:10px 14px;text-align:center"><b>1,100店舗</b></td></tr>
-        <tr style="background:#F4F9F6"><td style="padding:10px 14px">フードロス削減</td><td style="padding:10px 14px">CO2削減量</td><td style="padding:10px 14px;text-align:center">94t</td><td style="padding:10px 14px;text-align:center">232t</td><td style="padding:10px 14px;text-align:center"><b>270t</b></td></tr>
-      </table>
-    </div>
-    <div class="grid g2">
-      <div class="card" style="border:2px solid var(--gold)">
-        <h3 style="color:var(--gold-dark)">投資回収シミュレーション（3年累計・試算）</h3>
-        <p style="font-size:13.5px">スポンサーフィー支払 <b>3.0億円</b>（1.0億円×3年）に対し、ユーザー登録増による拡散効果 ≈1.5億円＋新規加盟店収入（年会費＋手数料）≈1.0億円＋試合日売上・平均2.8万人の露出・PR価値 ≈0.5億円 ＝ <b style="color:var(--red)">合計3.0億円。KPI達成（最低ライン）で3年全額回収。</b></p>
-      </div>
-      <div class="card tint">
-        <h3>KPIの測定方法</h3>
-        <p style="font-size:13.5px">登録者数・加盟店数はQRコード経由の新規登録で測定。CO2削減量は、TGTGアプリに実装済みの可視化機能を活用して自動計測し、SPL気候アクション報告へ組み込む。</p>
-      </div>
-    </div>
-    <p style="font-size:11px;color:var(--gray);margin-top:14px">出典：本提案（標準シナリオ・試算）／Too Good To Go 公式インパクト算定（1袋≒2.7kg CO2e）</p>
-  </div>
-</section>
-
-<section id="roadmap">
-  <div class="wrap">
-    <div class="sec-label">SCHEDULE</div>
-    <h2>スタジアムから未来へ ― <span class="accent">SPL世界一への道</span></h2>
-    <div class="timeline">
-      <div class="tl-item"><div class="year">2026年</div><div class="what">パートナー契約締結・導入準備</div><p>スタジアム店舗への導入準備</p></div>
-      <div class="tl-item"><div class="year">2027年｜スタジアム</div><div class="what">ホーム開幕戦よりサービス開始</div><p>鹿島国立での実証・効果検証</p></div>
-      <div class="tl-item"><div class="year">2028年｜ホームタウン展開</div><div class="what">鹿嶋市内店舗への加盟促進</div><p>効果検証を重ねPDCAを回す</p></div>
-      <div class="tl-item"><div class="year">2029年｜茨城県全域へ</div><div class="what">茨城県内店舗への加盟促進</div><p>「鹿島モデル」を県全域へ拡大</p></div>
-      <div class="tl-item"><div class="year">2033年</div><div class="what">SPL優勝・新スタジアム開業</div><p>世界的なブランド発信へ。新スタジアム設計にフードレスキューを組込み</p></div>
-      <div class="tl-item"><div class="year">2041年</div><div class="what">KA41 世界No.1</div><p>創設100周年ビジョンの完成</p></div>
-    </div>
-    <div class="card tint" style="margin-top:10px">
-      <h3>SPL（Sport Positive Leagues）とは</h3>
-      <p style="font-size:13.5px">サッカークラブの気候変動対策を数値化・可視化し、環境への取り組みを競う国際的なリーグ。12カテゴリー・27点満点のマトリクス方式で、プレミア（2018/19）→ブンデス→リーグアン→EFLと拡大。Jリーグが5番目・アジア初として参画（2026本格）。鹿島はSPLでJリーグ内1位・満点27点を志向し、「世界一グリーンなクラブ」の座を狙う。</p>
-    </div>
-  </div>
-</section>
-
-<section id="apps">
-  <div class="wrap">
-    <div class="sec-label">OFFICIAL</div>
-    <h2>公式サイト・アプリはこちら</h2>
-    <div class="grid g2">
-      <div class="card" style="text-align:center">
-        <h3>Too Good To Go 公式</h3>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAFAElEQVR4nO3dQW4sNRRAUYJYF+tgiayDjTVjpOuBJRvb/c8Zok+l0smVpXpx+efz+fwG/Nfvp28AbiQMCMKAIAwIwoAgDAjCgCAMCMKAIAwIwoAgDAjCgCAMCMKA8Mfs//Dz15877mO5z9//5H8f3f/o34+sus7s9U+Z/TxvM/tzsWJAEAYEYUAQBgRhQBAGBGFAmJ5jjKx6fj9r93P02+YVt81bRl7/fbBiQBAGBGFAEAYEYUAQBgRhQFg2xxhZ9Vx51XPx2eusmhu84ra5zcjuOYkVA4IwIAgDgjAgCAOCMCAIA8L2OcZtds8Zdj9ff/3+X2HFgCAMCMKAIAwIwoAgDAjCgPDLzTFue9/R7v0hI6feN/UKKwYEYUAQBgRhQBAGBGFAEAaE7XOM15+L754/7D53fNbu+cYrvw9WDAjCgCAMCMKAIAwIwoAgDAjL5hivnAtx6vyHU9df9e9nvfL7MGLFgCAMCMKAIAwIwoAgDAjCgPDz+XxO38P/avb5+qn5wKr9GLv3gXwrKwYEYUAQBgRhQBAGBGFAEAaE6TnGqef3q/6+/5VzuF/5HHa/F+vUXMiKAUEYEIQBQRgQhAFBGBCEAWHZfoxT7y869Zx7t1fmP986V7FiQBAGBGFAEAYEYUAQBgRhQNg+x5h12/PyU+ddjNy2n+S2fTirPh8rBgRhQBAGBGFAEAYEYUAQBoRl53yvmg+s+rqnrr/7fma98jnPft0R+zFgI2FAEAYEYUAQBgRhQBAGhGPnfH/ruQqnzs8+9Xmuctu+FCsGBGFAEAYEYUAQBgRhQBAGhGfO+T7lW7/f3XOPkdv27YxYMSAIA4IwIAgDgjAgCAOCMCAse6/UyG1/x3/q637r+6lm7/PUfo9ZVgwIwoAgDAjCgCAMCMKAIAwIy+YYp87Dvu15/+55xW3vpzp1Psbuz8eKAUEYEIQBQRgQhAFBGBCEAWHZ+Rin3v9z276IV+YMt50fMnt9cww4QBgQhAFBGBCEAUEYEIQBYfs536+c5z3yynP62875fuXnNWLFgCAMCMKAIAwIwoAgDAjCgDD9XqnZ59O7/+7/tvdZjezep3HbeeGzbtv3YsWAIAwIwoAgDAjCgCAMCMKAMD3H2L0/Ydapv++/7bzqU9/v7HVeYcWAIAwIwoAgDAjCgCAMCMKAcN0537PPy7/1XIvZ64ycmjudOmd9FSsGBGFAEAYEYUAQBgRhQBAGhGVzjFVzgNve17Tb7nMkbnsv1qk5yez9WzEgCAOCMCAIA4IwIAgDgjAgLDsf4zanzsc49f6l2fvZPU849X055xs2EgYEYUAQBgRhQBAGBGFAuG4/xqxT52+s+vezTs0HZq9zyqr5hhUDgjAgCAOCMCAIA4IwIAgDwrI5xsju86d3X+fUeRSnrjN7/VVum6tYMSAIA4IwIAgDgjAgCAOCMCBsn2PcZvd5Eafe17R77rF73nLbPMeKAUEYEIQBQRgQhAFBGBCEAeGXm2OM7N7PMGv38/tT84rb9pmMWDEgCAOCMCAIA4IwIAgDgjAgbJ9j3HZ+wu73Sq1y21xit1P7Q0asGBCEAUEYEIQBQRgQhAFBGBCWzTFOPe+ftfu9UrNOzRlmf16vn/89y4oBQRgQhAFBGBCEAUEYEIQB4efz+Zy+B7iOFQOCMCAIA4IwIAgDgjAgCAOCMCAIA4IwIAgDgjAgCAOCMCAIA8K/mnpBtHYDkT8AAAAASUVORK5CYII=" alt="Too Good To Go 公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
-        <p style="margin-bottom:14px">サプライズバッグの予約はアプリから</p>
-        <a class="btn" style="background:var(--green);font-size:14px;padding:10px 34px" href="https://www.toogoodtogo.com/ja-jp" target="_blank" rel="noopener">toogoodtogo.com/ja-jp</a>
-      </div>
-      <div class="card" style="text-align:center">
-        <h3 style="color:var(--red)">鹿島アントラーズ 公式</h3>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoCAIAAABqyz8vAAAEMUlEQVR4nO3dwW0cORBAUcvYMJzFRuTINqLNwnn0XnxtA1ywQH7pvbM0mtF88FAosD+e5/kGNd9PvwH4P4RLknBJEi5JwiVJuCQJlyThkiRckoRLknBJEi5JwiVJuCQJl6S/Vn/hnx9/T7yP7X7++nfL66x+3tW/+/b6b6+z6+dvs/p/c+KSJFyShEuScEkSLknCJUm4JC3Pcd/smpuump5Trs5Hd819T32uabs+lxOXJOGSJFyShEuScEkSLknCJWnbHPfNrrnd9H7t9P7rqbnpqtu+rzdOXJKES5JwSRIuScIlSbgkCZek8TluxfT8tTIfrXDikiRckoRLknBJEi5JwiVJuCSZ4/62a7/2tvtxPysnLknCJUm4JAmXJOGSJFyShEvS+By3Ml9c3Zf9rPczVL4vJy5JwiVJuCQJlyThkiRckoRL0rY57vRzuaadmr+emu/Wvy8nLknCJUm4JAmXJOGSJFyShEvS8hy3sq9Z5z7dP3PikiRckoRLknBJEi5JwiVJuCR9PM+z9Au79kenTe+nTt+Du0vl/7/KiUuScEkSLknCJUm4JAmXJOGStDzHfTO9P1qZH686NW+enitPv74TlyThkiRckoRLknBJEi5JwiXp2Bz31Py1vv9629x61/tZ/V6cuCQJlyThkiRckoRLknBJEi5J255ztstn3cfdtXdb2ced/l6cuCQJlyThkiRckoRLknBJEi5J2/Zx39y2pzs917xtfrzLqe/ljROXJOGSJFyShEuScEkSLknCJWnbc86m3TZPve3e2TfT+82n/g9OXJKES5JwSRIuScIlSbgkCZekbXPc2+aap+5tfXNqbjrN/biwQLgkCZck4ZIkXJKES5JwSRqf406/zrTpeeSpOXRlnv3GiUuScEkSLknCJUm4JAmXJOGSdOw5Z6fuSZjeZ73tftzp97M6l3WvAl+acEkSLknCJUm4JAmXJOGSNP6cs9vcNmet7MtO/91VTlyShEuScEkSLknCJUm4JAmXpOV93NvmoG927YNO33tw2+u/md5jdq8CX4JwSRIuScIlSbgkCZck4ZK07V6FU3uZp+aaq049n+y2e213ceKSJFyShEuScEkSLknCJUm4JI3fj3tqX3PVqb3V6b3bXXZ9rl2cuCQJlyThkiRckoRLknBJEi5Jx55zVnHqvthTe7RvPz89V3avAl+CcEkSLknCJUm4JAmXJOGSZI7726nnhE3PO0/dgzt9j4QTlyThkiRckoRLknBJEi5JwiVpfI576v7UN6fmtbuer3bbPNX9uLBAuCQJlyThkiRckoRLknBJ2jbHnb6fdZfpe2pX/+6b2+bfb059705ckoRLknBJEi5JwiVJuCQJl6SP53lOvwdY5sQlSbgkCZck4ZIkXJKES5JwSRIuScIlSbgkCZck4ZIkXJKES5JwSfoPveCQ2j/vagcAAAAASUVORK5CYII=" alt="鹿島アントラーズ公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
-        <p style="margin-bottom:14px">試合情報・公式アプリのダウンロードはこちら</p>
-        <a class="btn" style="background:var(--red);font-size:14px;padding:10px 34px" href="https://www.antlers.co.jp/" target="_blank" rel="noopener">antlers.co.jp</a>
+      <div>
+        <p style="font-size:14.5px;margin-bottom:6px">恵比寿・代官山の<b>MR.FRIENDLY Cafe</b>で、可愛いホットケーキの詰め合わせをレスキュー。アプリで予約して、指定時間にお店で受け取るだけ。想像以上に簡単でした。</p>
+        <div class="report-quote">
+          環境に良いことをした、という事実が自分の心を軽くしてくれる ―― これは使ってみて初めて分かる感覚でした。販売店の方々も「このアプリのおかげで廃棄が減り、お店の雰囲気が明るくなった」と言います。実際に受け取りに行くと、それも頷けます。
+        </div>
+        <p style="font-size:14.5px">スタジアムでこの体験が起きたらどうなるか。勝利の余韻と一緒に「食を救った」気持ちを持ち帰る2.8万人を想像してみてください。<b style="color:var(--green)">それがこの提案の原点です。</b></p>
       </div>
     </div>
   </div>
@@ -386,6 +461,45 @@
   </div>
 </section>
 
+<section id="apps">
+  <div class="wrap">
+    <div class="sec-label">TAKE ACTION</div>
+    <h2>公式サイト・アプリは<span class="accent">こちら</span></h2>
+    <p style="max-width:860px;margin-bottom:22px">気になったら、まずは1分。このページから実際に動いた人数がリアルタイムで表示されます。</p>
+    <div class="board">
+      <div class="b-item"><div class="b-num" id="cnt-tgtg">–</div><div class="b-label">TGTG公式へ</div></div>
+      <div class="b-item"><div class="b-num" id="cnt-antlers">–</div><div class="b-label">鹿島公式へ</div></div>
+      <div class="b-item"><div class="b-num" id="cnt-quiz">–</div><div class="b-label">クイズ挑戦</div></div>
+    </div>
+    <div class="board-note">※このページからボタン・QRを経由した人数（1人1カウント）</div>
+    <div class="grid g2">
+      <div class="card" style="text-align:center">
+        <h3>Too Good To Go 公式</h3>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAFAElEQVR4nO3dQW4sNRRAUYJYF+tgiayDjTVjpOuBJRvb/c8Zok+l0smVpXpx+efz+fwG/Nfvp28AbiQMCMKAIAwIwoAgDAjCgCAMCMKAIAwIwoAgDAjCgCAMCMKA8Mfs//Dz15877mO5z9//5H8f3f/o34+sus7s9U+Z/TxvM/tzsWJAEAYEYUAQBgRhQBAGBGFAmJ5jjKx6fj9r93P02+YVt81bRl7/fbBiQBAGBGFAEAYEYUAQBgRhQFg2xxhZ9Vx51XPx2eusmhu84ra5zcjuOYkVA4IwIAgDgjAgCAOCMCAIA8L2OcZtds8Zdj9ff/3+X2HFgCAMCMKAIAwIwoAgDAjCgPDLzTFue9/R7v0hI6feN/UKKwYEYUAQBgRhQBAGBGFAEAaE7XOM15+L754/7D53fNbu+cYrvw9WDAjCgCAMCMKAIAwIwoAgDAjL5hivnAtx6vyHU9df9e9nvfL7MGLFgCAMCMKAIAwIwoAgDAjCgPDz+XxO38P/avb5+qn5wKr9GLv3gXwrKwYEYUAQBgRhQBAGBGFAEAaE6TnGqef3q/6+/5VzuF/5HHa/F+vUXMiKAUEYEIQBQRgQhAFBGBCEAWHZfoxT7y869Zx7t1fmP986V7FiQBAGBGFAEAYEYUAQBgRhQNg+x5h12/PyU+ddjNy2n+S2fTirPh8rBgRhQBAGBGFAEAYEYUAQBoRl53yvmg+s+rqnrr/7fma98jnPft0R+zFgI2FAEAYEYUAQBgRhQBAGhGPnfH/ruQqnzs8+9Xmuctu+FCsGBGFAEAYEYUAQBgRhQBAGhGfO+T7lW7/f3XOPkdv27YxYMSAIA4IwIAgDgjAgCAOCMCAse6/UyG1/x3/q637r+6lm7/PUfo9ZVgwIwoAgDAjCgCAMCMKAIAwIy+YYp87Dvu15/+55xW3vpzp1Psbuz8eKAUEYEIQBQRgQhAFBGBCEAWHZ+Rin3v9z276IV+YMt50fMnt9cww4QBgQhAFBGBCEAUEYEIQBYfs536+c5z3yynP62875fuXnNWLFgCAMCMKAIAwIwoAgDAjCgDD9XqnZ59O7/+7/tvdZjezep3HbeeGzbtv3YsWAIAwIwoAgDAjCgCAMCMKAMD3H2L0/Ydapv++/7bzqU9/v7HVeYcWAIAwIwoAgDAjCgCAMCMKAcN0537PPy7/1XIvZ64ycmjudOmd9FSsGBGFAEAYEYUAQBgRhQBAGhGVzjFVzgNve17Tb7nMkbnsv1qk5yez9WzEgCAOCMCAIA4IwIAgDgjAgLDsf4zanzsc49f6l2fvZPU849X055xs2EgYEYUAQBgRhQBAGBGFAuG4/xqxT52+s+vezTs0HZq9zyqr5hhUDgjAgCAOCMCAIA4IwIAgDwrI5xsju86d3X+fUeRSnrjN7/VVum6tYMSAIA4IwIAgDgjAgCAOCMCBsn2PcZvd5Eafe17R77rF73nLbPMeKAUEYEIQBQRgQhAFBGBCEAeGXm2OM7N7PMGv38/tT84rb9pmMWDEgCAOCMCAIA4IwIAgDgjAgbJ9j3HZ+wu73Sq1y21xit1P7Q0asGBCEAUEYEIQBQRgQhAFBGBCWzTFOPe+ftfu9UrNOzRlmf16vn/89y4oBQRgQhAFBGBCEAUEYEIQB4efz+Zy+B7iOFQOCMCAIA4IwIAgDgjAgCAOCMCAIA4IwIAgDgjAgCAOCMCAIA8K/mnpBtHYDkT8AAAAASUVORK5CYII=" alt="Too Good To Go 公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
+        <p style="margin-bottom:14px">サプライズバッグの予約はアプリから。<br>まずは1分、登録してみてください。</p>
+        <a class="btn" style="background:var(--green);font-size:14px;padding:10px 34px" href="https://www.toogoodtogo.com/ja-jp" target="_blank" rel="noopener" onclick="hitOnce('tgtg')">toogoodtogo.com/ja-jp</a>
+      </div>
+      <div class="card" style="text-align:center">
+        <h3 style="color:var(--red)">鹿島アントラーズ 公式</h3>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoCAIAAABqyz8vAAAEMUlEQVR4nO3dwW0cORBAUcvYMJzFRuTINqLNwnn0XnxtA1ywQH7pvbM0mtF88FAosD+e5/kGNd9PvwH4P4RLknBJEi5JwiVJuCQJlyThkiRckoRLknBJEi5JwiVJuCQJl6S/Vn/hnx9/T7yP7X7++nfL66x+3tW/+/b6b6+z6+dvs/p/c+KSJFyShEuScEkSLknCJUm4JC3Pcd/smpuump5Trs5Hd819T32uabs+lxOXJOGSJFyShEuScEkSLknCJWnbHPfNrrnd9H7t9P7rqbnpqtu+rzdOXJKES5JwSRIuScIlSbgkCZek8TluxfT8tTIfrXDikiRckoRLknBJEi5JwiVJuCSZ4/62a7/2tvtxPysnLknCJUm4JAmXJOGSJFyShEvS+By3Ml9c3Zf9rPczVL4vJy5JwiVJuCQJlyThkiRckoRL0rY57vRzuaadmr+emu/Wvy8nLknCJUm4JAmXJOGSJFyShEvS8hy3sq9Z5z7dP3PikiRckoRLknBJEi5JwiVJuCR9PM+z9Au79kenTe+nTt+Du0vl/7/KiUuScEkSLknCJUm4JAmXJOGStDzHfTO9P1qZH686NW+enitPv74TlyThkiRckoRLknBJEi5JwiXp2Bz31Py1vv9629x61/tZ/V6cuCQJlyThkiRckoRLknBJEi5J255ztstn3cfdtXdb2ced/l6cuCQJlyThkiRckoRLknBJEi5J2/Zx39y2pzs917xtfrzLqe/ljROXJOGSJFyShEuScEkSLknCJWnbc86m3TZPve3e2TfT+82n/g9OXJKES5JwSRIuScIlSbgkCZekbXPc2+aap+5tfXNqbjrN/biwQLgkCZck4ZIkXJKES5JwSRqf406/zrTpeeSpOXRlnv3GiUuScEkSLknCJUm4JAmXJOGSdOw5Z6fuSZjeZ73tftzp97M6l3WvAl+acEkSLknCJUm4JAmXJOGSNP6cs9vcNmet7MtO/91VTlyShEuScEkSLknCJUm4JAmXpOV93NvmoG927YNO33tw2+u/md5jdq8CX4JwSRIuScIlSbgkCZck4ZK07V6FU3uZp+aaq049n+y2e213ceKSJFyShEuScEkSLknCJUm4JI3fj3tqX3PVqb3V6b3bXXZ9rl2cuCQJlyThkiRckoRLknBJEi5Jx55zVnHqvthTe7RvPz89V3avAl+CcEkSLknCJUm4JAmXJOGSZI7726nnhE3PO0/dgzt9j4QTlyThkiRckoRLknBJEi5JwiVpfI576v7UN6fmtbuer3bbPNX9uLBAuCQJlyThkiRckoRLknBJ2jbHnb6fdZfpe2pX/+6b2+bfb059705ckoRLknBJEi5JwiVJuCQJl6SP53lOvwdY5sQlSbgkCZck4ZIkXJKES5JwSRIuScIlSbgkCZck4ZIkXJKES5JwSfoPveCQ2j/vagcAAAAASUVORK5CYII=" alt="鹿島アントラーズ公式サイトQRコード" style="width:180px;height:180px;margin:10px auto;display:block">
+        <p style="margin-bottom:14px">試合情報・公式アプリのダウンロードはこちら</p>
+        <a class="btn" style="background:var(--red);font-size:14px;padding:10px 34px" href="https://www.antlers.co.jp/" target="_blank" rel="noopener" onclick="hitOnce('antlers')">antlers.co.jp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="comments">
+  <div class="wrap">
+    <div class="sec-label">YOUR VOICE</div>
+    <h2>ご意見・<span class="accent">ご感想</span></h2>
+    <p style="max-width:860px;margin-bottom:22px">感想・質問・改善案など、ご自由にお書きください。いただいた声は今後の提案づくりに活かします。</p>
+    <div class="form-box" id="form-box">
+      <div class="form-pending">コメント欄は準備中です。もうしばらくお待ちください。</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="close">「もったいない」を、誇りに。― すべては勝利のために。環境の勝利も、勝利だ。</div>
@@ -394,6 +508,44 @@
   </div>
 </footer>
 
+<script>
+/* ===== 参加カウンター（Abacus API・1人1カウント） ===== */
+const CNT_NS = "kashima-tgtg-psb6";
+const CNT_KEYS = ["tgtg", "antlers", "quiz"];
+function cntShow(key, val){
+  const el = document.getElementById("cnt-" + key);
+  if (el) el.textContent = val + "人";
+}
+async function cntLoad(){
+  for (const k of CNT_KEYS){
+    try {
+      const r = await fetch("https://abacus.jasoncameron.dev/get/" + CNT_NS + "/" + k);
+      if (r.ok) { const j = await r.json(); cntShow(k, j.value || 0); }
+      else cntShow(k, 0);
+    } catch(e) { cntShow(k, 0); }
+  }
+}
+async function hitOnce(key){
+  if (localStorage.getItem("cnt_done_" + key)) return;
+  localStorage.setItem("cnt_done_" + key, "1");
+  try {
+    const r = await fetch("https://abacus.jasoncameron.dev/hit/" + CNT_NS + "/" + key);
+    const j = await r.json();
+    cntShow(key, j.value || 0);
+  } catch(e) {}
+}
+window.addEventListener("DOMContentLoaded", cntLoad);
+
+/* ===== コメント欄（Googleフォーム埋め込み） =====
+   GoogleフォームのURL（…/viewform で終わるもの）を下の "" の中に貼ると表示されます */
+const FORM_EMBED_URL = "";
+window.addEventListener("DOMContentLoaded", function(){
+  if (FORM_EMBED_URL) {
+    const box = document.getElementById("form-box");
+    box.innerHTML = '<iframe src="' + FORM_EMBED_URL + (FORM_EMBED_URL.includes("?") ? "&" : "?") + 'embedded=true" loading="lazy" title="コメントフォーム">読み込んでいます…</iframe>';
+  }
+});
+</script>
 
 <script>
 const QUIZ = {"title": "TGTG×フードロス 50問クイズ", "description": "Too Good To Go・フードロスの基礎＋PSB第6期2班『未来に残そう、勝利も食も。』提案書より。収録50問から毎回10問をランダム出題", "timeLimit": 25, "drawCount": 10, "theme": {"primary": "#00936B", "secondary": "#FFC94A"}, "questions": [{"type": "choice", "q": "Too Good To Go（TGTG）が創業された国は？", "options": ["スウェーデン", "デンマーク", "ノルウェー", "オランダ"], "answer": 1, "explanation": "2015年コペンハーゲンで創業、2016年にアプリ開始。北欧発の世界No.1フードロス削減アプリです。"}, {"type": "choice", "q": "TGTGで余剰食品を詰め合わせて販売する商品の名称は？", "options": ["ミステリーボックス", "サプライズバッグ", "レスキューパック", "エコセット"], "answer": 1, "explanation": "その日に余った、まだ美味しく食べられる食品をお店が詰め合わせて販売します。"}, {"type": "choice", "q": "サプライズバッグの価格の目安は？", "options": ["定価の9割程度", "定価の半額以下", "一律100円", "無料"], "answer": 1, "explanation": "通常価格の半額以下（3分の1程度）が基本。買い手・店・環境の三方良しです。"}, {"type": "choice", "q": "TGTGが日本でサービスを開始したのはいつ？", "options": ["2024年4月", "2025年1月", "2026年1月28日", "2026年6月"], "answer": 2, "explanation": "東京の新宿・渋谷・目黒エリアから開始。ローンチ時点で80店舗以上が参加しました。"}, {"type": "choice", "q": "日本はTGTGにとって何カ国目の展開国？", "options": ["10カ国目", "15カ国目", "21カ国目", "30カ国目"], "answer": 2, "explanation": "欧州・北米に続く21カ国目です。"}, {"type": "tf", "q": "TGTGの日本上陸は、アジアで初めての展開である。", "answer": true, "explanation": "日本がアジア第1号。だから「Jリーグ×TGTG」はアジア初の座を狙える空白地帯なのです。"}, {"type": "choice", "q": "日本ローンチ時にサービスが始まったエリアは？", "options": ["大阪・梅田周辺", "東京の新宿・渋谷・目黒など", "名古屋・栄周辺", "福岡・天神周辺"], "answer": 1, "explanation": "都内一部エリアからスタートし、順次拡大しています。"}, {"type": "choice", "q": "TGTGの世界の登録ユーザー数はおよそ？", "options": ["約1,200万人", "約5,000万人", "約1億2,000万人", "約3億人"], "answer": 2, "explanation": "約1億2,000万ユーザー・加盟店約18万店。世界最大級のフードロス削減プラットフォームです。"}, {"type": "choice", "q": "TGTGの世界の加盟店舗数はおよそ？", "options": ["約1.8万店", "約5万店", "約18万店", "約100万店"], "answer": 2, "explanation": "21カ国で約18万店が参加しています。"}, {"type": "choice", "q": "日本上陸時点でTGTGが公表していた累計フードロス削減量は？", "options": ["5,000万食", "1億食", "5億食以上", "100億食"], "answer": 2, "explanation": "累計5億食以上（CO2e換算約130万トン相当）を廃棄から救ってきました。"}, {"type": "choice", "q": "TGTGのビジネスモデル（主な収益源）は？", "options": ["広告収入", "加盟店からの手数料（販売額の10〜20%）", "会員の月額課金", "行政の補助金"], "answer": 1, "explanation": "店は廃棄コスト減＋新規客獲得、買い手はお得、TGTGは手数料。全員が得をする設計です。"}, {"type": "tf", "q": "サプライズバッグは、買う人が中身を自由に選べる。", "answer": false, "explanation": "中身はお店におまかせの「サプライズ」形式。だからこそ廃棄予定品を柔軟に詰められます。"}, {"type": "choice", "q": "日本上陸から約1週間で獲得したユーザー数は？", "options": ["2.5万人", "10万人", "25万人", "100万人"], "answer": 2, "explanation": "App Store無料アプリ総合1位も獲得。約3カ月半で50万人を突破しました。"}, {"type": "choice", "q": "TGTGの「Look-Smell-Taste」キャンペーンの内容は？", "options": ["商品陳列の研修", "賞味期限表示の食品を五感で確かめて食べる呼びかけ", "料理コンテスト", "店舗の衛生検査"], "answer": 1, "explanation": "「見て・嗅いで・味わって」。賞味期限は美味しさの目安で、過ぎても直ちに食べられなくなるわけではありません。"}, {"type": "choice", "q": "日本でTGTGに参加している企業として紹介されたのは？", "options": ["マクドナルド", "ファミリーマート", "スシロー", "サイゼリヤ"], "answer": 1, "explanation": "ほかにNewDays、クリスピー・クリーム・ドーナツ、地域の人気飲食店なども参加しています。"}, {"type": "choice", "q": "クリスピー・クリーム・ドーナツが2026年3月23日から始めたことは？", "options": ["全品値下げ", "TGTGを都内全店へ順次拡大", "24時間営業", "移動販売車の導入"], "answer": 1, "explanation": "「“おいしい”社会貢献と新しいドーナツとの出会い」を掲げ、都内全店に拡大しました。"}, {"type": "choice", "q": "社名「Too Good To Go」の意味に最も近いのは？", "options": ["早い者勝ち", "捨てるにはもったいなさすぎる", "持ち帰り自由", "良いものは残らない"], "answer": 1, "explanation": "「捨てるには良すぎる（もったいない）」。日本の「もったいない」精神と響き合う名前です。"}, {"type": "choice", "q": "日本の食品ロス量（2023年度推計）は？", "options": ["約164万トン", "約264万トン", "約464万トン", "約964万トン"], "answer": 2, "explanation": "前年度から8万トン減で過去最少を更新。それでも東京ドーム約4杯分に相当します。"}, {"type": "tf", "q": "2023年度、統計開始以来初めて「事業系」の食品ロスが「家庭系」を下回った。", "answer": true, "explanation": "事業系231万トン＜家庭系233万トン。企業の努力が進み、次の主戦場は家庭です。"}, {"type": "choice", "q": "日本人1人あたりの食品ロス量（年間）は？", "options": ["約7kg", "約17kg", "約37kg", "約77kg"], "answer": 2, "explanation": "国民1人あたり年間約37kg。毎日捨てている計算になります。"}, {"type": "choice", "q": "日本人1人が1日に捨てている食品ロスは、およそ何に相当する？", "options": ["おにぎり1個分", "食パン1斤分", "弁当2個分", "りんご3個分"], "answer": 0, "explanation": "約100g＝おにぎり1個分を、全国民が毎日捨てているイメージです。"}, {"type": "choice", "q": "世界で生産される食料のうち、廃棄される割合はおよそ？", "options": ["約10分の1", "約5分の1", "約3分の1", "約半分"], "answer": 2, "explanation": "FAOの推計で約3分の1、年間約13億トンが失われています。"}, {"type": "choice", "q": "食品ロス・廃棄に由来する温室効果ガスは、世界の排出量の約何%？", "options": ["1〜2%", "8〜10%", "20〜25%", "40%超"], "answer": 1, "explanation": "「食品ロスが国なら、中国・米国に次ぐ世界3位の排出国」と例えられる規模です。"}, {"type": "choice", "q": "SDGsターゲット12.3が掲げる2030年目標は？", "options": ["食品廃棄の完全ゼロ", "小売・消費レベルの食品廃棄を半減", "食品輸入の半減", "有機農業への全面転換"], "answer": 1, "explanation": "小売・消費レベルで1人あたり食品廃棄を半減、生産・サプライチェーンでの損失も減らす目標です。"}, {"type": "choice", "q": "「食品ロス削減推進法」が施行されたのは？", "options": ["2009年", "2015年", "2019年", "2024年"], "answer": 2, "explanation": "2019年10月施行。10月は食品ロス削減月間です。"}, {"type": "choice", "q": "「食品ロス削減の日」はいつ？", "options": ["1月30日", "4月1日", "10月30日", "12月31日"], "answer": 2, "explanation": "削減月間（10月）の30日。「食品ロスゼロ（30）」の語呂合わせです。"}, {"type": "choice", "q": "食品業界の「3分の1ルール」とは？", "options": ["賞味期限の最初の1/3以内に小売へ納品する商慣習", "食材の1/3まで廃棄してよいルール", "売価を1/3にするルール", "売上の1/3を寄付する義務"], "answer": 0, "explanation": "納品期限を過ぎるとまだ食べられるのに返品・廃棄に。食品ロスを生む商慣習として見直しが進んでいます。"}, {"type": "choice", "q": "「てまえどり」とは？", "options": ["棚の手前（販売期限が近い）の商品から買うこと", "開店直後に並ぶこと", "商品を予約購入すること", "手作り弁当を持参すること"], "answer": 0, "explanation": "すぐ食べるなら手前から。販売期限切れによる廃棄を減らせる、今日からできるアクションです。"}, {"type": "tf", "q": "賞味期限を過ぎた食品は、直ちに食べられなくなる。", "answer": false, "explanation": "賞味期限は「美味しく食べられる目安」。安全に食べられる期限は「消費期限」です。TGTGのLook-Smell-Tasteもこの啓発です。"}, {"type": "choice", "q": "日本の食品ロス削減の国家目標は？", "options": ["2000年度比で2030年度までに半減", "2010年比で2040年までに7割減", "毎年10%ずつ削減", "2050年ゼロ宣言"], "answer": 0, "explanation": "事業系はすでに目標達成が視野に。家庭系の削減が今後のカギです。"}, {"type": "choice", "q": "PSB第6期2班の鹿島×TGTG提案書のタイトルは？", "options": ["もったいないに、勝とう。", "未来に残そう、勝利も食も。", "食こそ勝利。", "茨城から世界へ。"], "answer": 1, "explanation": "副題は「WE BUILD A LEGACY」。TGTGのバリューと鹿島の勝利の文化を接続したコピーです。"}, {"type": "choice", "q": "英国で初めてTGTGと提携したサッカークラブは？", "options": ["セルティック", "ハイバーニアンFC", "リバプール", "ブライトン"], "answer": 1, "explanation": "スコットランド・エディンバラの名門が2021年に提携。スタジアム×TGTGの世界的先行事例です。"}, {"type": "choice", "q": "ハイバーニアンFCがスタジアムで販売したTGTGバッグの名前は？", "options": ["Surprise Bag", "Magic Bag", "Lucky Bag", "Green Bag"], "answer": 1, "explanation": "£4で販売。「先例はあるがJリーグ・アジアは空白」という提案の論拠になった事例です。"}, {"type": "tf", "q": "JリーグにはすでにTGTGと提携しているクラブがある。", "answer": false, "explanation": "Jリーグ・アジアのクラブは空白地帯。鹿島が組めば「Jリーグ初・アジア初」になれます。"}, {"type": "choice", "q": "クリスピー・クリーム・ドーナツがTGTG導入で達成した廃棄削減は約？", "options": ["1割", "3割", "5割", "8割"], "answer": 1, "explanation": "廃棄約3割削減。社員の前向きな感情が増えたという効果も報告されています。"}, {"type": "choice", "q": "クリスピーのサプライズバッグ購入者のうち、初来店客の割合は約？", "options": ["1割", "2割", "4割", "8割"], "answer": 2, "explanation": "約4割が初来店。フードロス削減が新規顧客獲得に直結した好例です。"}, {"type": "choice", "q": "提案書がKPIの根拠とした、サプライズバッグの業界実績販売率は？", "options": ["50%超", "70%超", "90%超", "100%"], "answer": 2, "explanation": "出品した分がほぼ売り切れる水準。KPIは根拠を業界実績が担保する数値だけに絞りました。"}, {"type": "choice", "q": "セレッソ大阪×ヤンマーのフードロス施策が「別アプローチ」と整理された理由は？", "options": ["廃棄した後にリサイクルする型だから", "高価格だから", "期間限定だから", "ファンクラブ限定だから"], "answer": 0, "explanation": "TGTGは「廃棄になる前に売り切る」発生抑制型。ここが競合しない差別化ポイントです。"}, {"type": "choice", "q": "提案書で「鹿島の下地（環境アクションの実績）」と位置づけられた取り組みは？", "options": ["ソーラーパネル設置", "はがせるカップ", "電気バス送迎", "ペーパーレスチケット"], "answer": 1, "explanation": "リユースカップ導入済み＝スタジアムで環境施策を実行できるオペレーション力の証明です。"}, {"type": "choice", "q": "提案書の長期構想「完全資源循環スタジアム」を構成する3要素は？", "options": ["TGTG×はがせるカップ×堆肥化", "太陽光×風力×水素", "EV×AI×5G", "植林×募金×清掃"], "answer": 0, "explanation": "「廃棄前に売り切る→使い回す→土に還す」の循環をスタジアムで完結させる構想です。"}, {"type": "choice", "q": "SPL（Sport Positive Leagues）とは？", "options": ["クラブの環境アクションをスコア化する国際イニシアチブ", "選手の年俸ランキング", "観客動員数ランキング", "eスポーツの大会"], "answer": 0, "explanation": "気候変動対策12項目でクラブを評価。春日氏いわく「環境アクションの競技化」です。"}, {"type": "choice", "q": "JリーグのSPL参画の位置づけは？", "options": ["世界初の参画", "アジア初・世界5リーグ目", "欧州に次ぐ10番目", "オブザーバー参加のみ"], "answer": 1, "explanation": "プレミアリーグなど欧州4リーグに続く5番目でアジア初。TGTG（食品領域の環境アクション）と直結します。"}, {"type": "tf", "q": "SPLにおけるJリーグクラブの初回スコアは2026年に発表される。", "answer": true, "explanation": "2026年の特別大会から正式エントリー。だからこそ「今」TGTG提携がスコアと注目を先取りする好機です。"}, {"type": "choice", "q": "茨城県の農業産出額は全国何位？（提案書より）", "options": ["1位", "3位", "7位", "15位"], "answer": 1, "explanation": "全国3位の農業県で、食品製造も全国7位。「食の県」の中心に鹿島があります。"}, {"type": "choice", "q": "茨城県の食品ロス発生源で約70%を占めるのは？", "options": ["家庭", "飲食店", "製造業", "小売業"], "answer": 2, "explanation": "発生源（食品製造業）と高い削減意識の両方を持つ、日本で最もTGTGと相性の良い立地です。"}, {"type": "choice", "q": "茨城県民の食品ロス問題の認知度は？（提案書より）", "options": ["38%", "58%", "78%", "98%"], "answer": 3, "explanation": "市民の意識の高さが「アントラーズ×TGTGで共創する新しいシビックプライド」の土台になります。"}, {"type": "choice", "q": "提案書がROO（スポンサーシップの目的）の主軸に置いたのは？", "options": ["チケット完売", "パートナー企業のESG価値の最大化", "有名選手の獲得", "放映権収入の増加"], "answer": 1, "explanation": "スタジアムを「食ロス削減のショーケース」に。シビックプライドや勝利を願う感情は副次に置きました。"}, {"type": "choice", "q": "KPIに使われた、1食あたりのCO2削減係数は？", "options": ["0.7kg", "1.5kg", "2.7kg", "10kg"], "answer": 2, "explanation": "TGTG基準の係数（2.7kg-CO2e/食）。販売率90%とともに、業界実績が根拠を担保する数値です。"}, {"type": "choice", "q": "提案の柱1「小規模実証」の設計は？", "options": ["全売店で一斉導入", "人気スタグル限定・試合後30分・メインゲート受取で3カ月実証", "オンライン限定販売", "練習場のみで実施"], "answer": 1, "explanation": "まず3カ月でベースラインを測定し、双方で目標を合意する「測定設計型」。質疑で数字を突かれない構えです。"}, {"type": "choice", "q": "提案書が描く2050年の鹿島アントラーズ「二重王冠」とは？", "options": ["リーグ優勝と天皇杯の2冠", "競技の頂点と社会価値の頂点の同時達成", "国内と海外のファン数No.1", "売上と利益の日本一"], "answer": 1, "explanation": "ACL・CWC制覇（競技）と食ロスゼロ・環境先進・地域産業ハブ（社会価値）を両立するクラブ像。2029 ACLE→2033新スタジアム→2041 KA41→2050二重王冠のロードマップです。"}]};
@@ -434,6 +586,7 @@ const QUIZ = {"title": "TGTG×フードロス 50問クイズ", "description": "T
   function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
   function start(){
+    hitOnce("quiz");
     deck = shuffle(QUIZ.questions.slice()).slice(0, N);
     idx = 0; score = 0;
     $("qz-start-wrap").classList.add("qz-hide");
