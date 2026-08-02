@@ -162,6 +162,18 @@
   /* Comments */
   .form-box { background: #fff; border-radius: 16px; box-shadow: 0 3px 14px rgba(0,0,0,.07); overflow: hidden; }
   .form-box iframe { width: 100%; border: none; min-height: 760px; display: block; }
+
+  /* Video */
+  .video-box {
+    border-radius: 16px; overflow: hidden; background: #000;
+    box-shadow: 0 3px 14px rgba(0,0,0,.12); max-width: 900px;
+  }
+  .video-box video { width: 100%; height: auto; display: block; }
+  .wip {
+    display: inline-block; background: var(--gold); color: #fff; font-weight: bold;
+    font-size: 12px; border-radius: 20px; padding: 4px 14px; margin-left: 10px;
+    vertical-align: middle;
+  }
   .form-pending {
     padding: 40px 24px; text-align: center; color: var(--gray); font-size: 14px;
   }
@@ -238,6 +250,7 @@
     <a href="#apps">公式アプリ</a>
     <a href="#comments">コメント</a>
     <a href="#archive">提案書PDF</a>
+    <a href="#movie">ムービー</a>
   </div>
 </nav>
 
@@ -526,6 +539,28 @@
       <b>追加①　アクティブ率・LTV：</b>「アプリを入れたけど使わない」を超える設計。スポーツ観戦と同じ「初回→来場体験→次回」の導線で、利用の習慣化を狙う。<br>
       <b>追加②　勝敗連動フードレスキュー＆加盟店促進：</b>クラブの成績をTGTGへの露出・PRで還元し、加盟店には参加特典を用意する。<br>
       <b>追加③　“はじめ方”と回収の裏づけ：</b>年1億円×3年は据え置いたまま、1年目を小商圏PoCに。成果連動オプションでスタートアップ側の初期リスクを抑える。</p>
+    </div>
+  </div>
+</section>
+
+<section id="movie">
+  <div class="wrap">
+    <div class="sec-label">MOVIE</div>
+    <h2>メルカリスタジアムシティー<span class="accent">2033</span><span class="wip">制作中</span></h2>
+    <p style="max-width:860px;margin-bottom:24px">提案の先にある2033年の姿を、映像にしてみました。カシマの芝から、未来のスタジアムシティへ。まだ制作途中のラフ版です。</p>
+    <div class="video-box">
+      <video controls preload="metadata" playsinline poster="movie_poster.jpg">
+        <source src="movie_stadium_city_2033.mp4" type="video/mp4">
+        お使いのブラウザは動画の再生に対応していません。
+      </video>
+    </div>
+    <p style="font-size:12px;color:var(--gray);margin-top:12px">※ 音声が出ます。再生ボタンを押してご覧ください（約15秒）。ラストは構想図で静止します。</p>
+    <div style="margin-top:26px">
+      <h3 style="font-size:17px;color:var(--green);margin-bottom:10px">構想図｜未来をつくる3つの循環システム</h3>
+      <a href="stadium_city_2033_board.jpg" target="_blank" rel="noopener" style="display:block;max-width:900px">
+        <img src="stadium_city_2033_board.jpg" alt="メルカリスタジアムシティー2033 構想図" style="width:100%;border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.12);display:block">
+      </a>
+      <p style="font-size:12px;color:var(--gray);margin-top:10px">画像をクリックすると大きく表示されます。</p>
     </div>
   </div>
 </section>
