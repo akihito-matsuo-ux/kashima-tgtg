@@ -178,6 +178,36 @@
     padding: 40px 24px; text-align: center; color: var(--gray); font-size: 14px;
   }
 
+  /* ===== Series break & PIA FC ===== */
+  .series-break { padding: 70px 0 0; background: #fff; text-align: center; }
+  .series-break .rule {
+    width: 90px; height: 2px; background: var(--gold); margin: 0 auto 14px;
+  }
+  .series-break .note {
+    font-size: 12px; letter-spacing: .18em; color: var(--gray); font-weight: bold;
+  }
+  .piafc-band { background: #04101F; padding: 34px 0; margin-top: 44px; }
+  .piafc-band .wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .piafc-band img.mark { width: 62px; height: auto; display: block; border-radius: 4px; }
+  .piafc-name { color: #fff; font-size: clamp(24px, 4vw, 34px); font-weight: bold; letter-spacing: .02em; line-height: 1.2; }
+  .piafc-name span { color: #C9A44C; font-size: .5em; letter-spacing: .3em; display: block; margin-top: 4px; }
+  .piafc-sub { color: #C9A44C; font-size: 13.5px; font-weight: bold; letter-spacing: .06em; margin-top: 8px; }
+  #piafc { background: #fff; }
+  .piafc-item { margin-bottom: 46px; }
+  .piafc-item:last-child { margin-bottom: 0; }
+  .piafc-item h3 {
+    font-size: 18px; color: #04101F; margin-bottom: 4px; font-weight: bold;
+  }
+  .piafc-item .num {
+    display: block; font-size: 11.5px; letter-spacing: .16em; color: var(--gold-dark);
+    font-weight: bold; margin-bottom: 2px;
+  }
+  .piafc-item img {
+    width: 100%; border-radius: 12px; box-shadow: 0 3px 16px rgba(0,0,0,.12);
+    display: block; margin-top: 12px;
+  }
+  .piafc-item .cap { font-size: 12px; color: var(--gray); margin-top: 8px; }
+
   footer { background: #00382A; color: #9FC4B3; padding: 34px 0; font-size: 11.5px; }
   footer .close { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 14px; }
 
@@ -253,6 +283,7 @@
     <a href="#addendum">追加検討</a>
     <a href="#movie">ムービー</a>
     <a href="#movie2">ムービー②</a>
+    <a href="#piafc" style="color:var(--gold)">PIA FC</a>
   </div>
 </nav>
 
@@ -610,6 +641,50 @@
       </video>
     </div>
     <p style="font-size:12px;color:var(--gray);margin-top:12px">※ 音声が出ます。再生ボタンを押してご覧ください（約15秒）。ラストは静止します。</p>
+  </div>
+</section>
+
+<div class="series-break">
+  <div class="rule"></div>
+  <div class="note">ここから別プロジェクト</div>
+</div>
+
+<div class="piafc-band">
+  <div class="wrap">
+    <img class="mark" src="piafc_logo.jpg" alt="PIA FC ロゴ">
+    <div>
+      <div class="piafc-name">PIA FC<span>SHIBUYA</span></div>
+      <div class="piafc-sub">クラブ創造プロジェクト｜ぴあスポーツビジネスプログラム 第6期</div>
+    </div>
+  </div>
+</div>
+
+<section id="piafc">
+  <div class="wrap">
+    <div class="piafc-item">
+      <span class="num">01</span>
+      <h3>組織図</h3>
+      <a href="piafc_orgchart.jpg" target="_blank" rel="noopener"><img src="piafc_orgchart.jpg" alt="PIA FC SHIBUYA 組織図"></a>
+      <p class="cap">画像をクリックすると大きく表示されます。</p>
+    </div>
+    <div class="piafc-item">
+      <span class="num">02</span>
+      <h3>フラッグシップストア</h3>
+      <a href="piafc_store.jpg" target="_blank" rel="noopener"><img src="piafc_store.jpg" alt="PIA FC フラッグシップストア 外観イメージ"></a>
+      <p class="cap">画像をクリックすると大きく表示されます。</p>
+    </div>
+    <div class="piafc-item">
+      <span class="num">03</span>
+      <h3>パーカー &amp; ポケットT</h3>
+      <a href="piafc_apparel.jpg" target="_blank" rel="noopener"><img src="piafc_apparel.jpg" alt="PIA FC パーカーとポケットTシャツ"></a>
+      <p class="cap">画像をクリックすると大きく表示されます。</p>
+    </div>
+    <div class="piafc-item">
+      <span class="num">04</span>
+      <h3>コーチジャケット</h3>
+      <a href="piafc_coachjacket.jpg" target="_blank" rel="noopener"><img src="piafc_coachjacket.jpg" alt="PIA FC コーチジャケット 全5色"></a>
+      <p class="cap">画像をクリックすると大きく表示されます。</p>
+    </div>
   </div>
 </section>
 
